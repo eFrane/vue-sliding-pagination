@@ -1,0 +1,53 @@
+$background-primary: #000 !default;
+$background-secondary: #ccc !default;
+$color-foreground-primary: #fff !default;
+$color-foreground-secondary: #000 !default;
+$transition-duration: 300ms !default;
+
+.pagination {
+    pointer-events: all;
+
+    ul, li {
+      display: inline;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      background: $background-primary;
+      color: $color-foreground-primary;
+
+      padding: .6em;
+      border-radius: .2em;
+      margin-right: .2em;
+
+      transition-duration: $transition-duration;
+      transition-property: background, color;
+
+      &:hover {
+        transition-duration: $transition-duration;
+        transition-property: background, color;
+
+        color: $color-foreground-secondary;
+        background: $background-secondary;
+      }
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+
+      a {
+        color: inherit;
+        padding: 0;
+        margin: 0;
+        text-decoration: none;
+      }
+
+      a[disabled] {
+        pointer-events: none;
+        cursor: pointer;
+      }
+    }
+
+    margin-bottom: 2.4em;
+  }
