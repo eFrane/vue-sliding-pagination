@@ -1,5 +1,5 @@
 <template>
-    <div class="pagination">
+    <nav class="pagination" :aria-label="ariaPaginationLabel">
         <ul>
             <!-- Previous Page -->
             <li
@@ -8,7 +8,7 @@
             >
                 <a
                     href="#"
-                    aria-label="Previous"
+                    :aria-label="ariaPreviousPageLabel"
                     :disabled="current == 1"
                     @click="goToPage(current - 1)"
                 >
@@ -20,9 +20,9 @@
             <li
                 v-for="page in (total <= nonSlidingSize) ? total : leftEndingPages"
                 :key="page"
-                :class="(page == current) ? 'active' : ''"
+                :class="(isCurrentPage(page)) ? 'active' : ''"
             >
-                <a href="#" @click="goToPage(page)" :aria-label="'Page ' + page">{{ page }}</a>
+                <a href="#" @click="goToPage(page)" :aria-label="goToPageLabel(page)">{{ page }}</a>
             </li>
 
             <!-- Gap if slide window > beginning !-->
@@ -36,11 +36,11 @@
 
             <!-- Slide window -->
             <li
-                v-for="page in slidingWindow"
+                v-for="page in slidingWindowPages"
                 :key="page"
-                :class="(page == current) ? 'active' : ''"
+                :class="(isCurrentPage(page)) ? 'active' : ''"
             >
-                <a href="#" @click="goToPage(page)" :aria-label="'Page ' + page">{{ page }}</a>
+                <a href="#" @click="goToPage(page)" :aria-label="goToPageLabel(page)">{{ page }}</a>
             </li>
 
             <li
@@ -55,24 +55,30 @@
                 <li
                     v-for="page in rightEndingPages"
                     :key="page"
-                    :class="(page == current) ? 'active' : ''"
+                    :class="(isCurrentPage(page)) ? 'active' : ''"
                 >
-                    <a href="#" @click="goToPage(page)" :aria-label="'Page ' + page">{{ page }}</a>
+                    <a
+                      href="#"
+                      @click="goToPage(page)"
+                      :aria-label="currentPageLabel(page)"
+                      :aria-current="isCurrentPage(page)"
+                      v-text="page">
+                    </a>
                 </li>
 
                 <li :class="(current == total) ? 'disabled' : ''">
                     <a
                         href="#"
-                        aria-label="Next"
+                        :aria-label="ariaNextPageLabel"
                         @click="goToPage(current + 1)"
                         :disabled="current == total"
                     >
-                        <slot name="last-page">&raquo;</slot>
+                        <slot name="next-page">&raquo;</slot>
                     </a>
                 </li>
             </template>
         </ul>
-    </div>
+    </nav>
 </template>
 
 <script>
@@ -80,16 +86,34 @@ import _range from 'lodash/range'
 
 export default {
   props: {
-    endingSize: {
+    ariaPaginationLabel: {
+      type: String,
       required: false,
-      type: Number,
-      default: 2
+      default: 'Pagination Navigation'
     },
 
-    nonSlidingSize: {
+    ariaGotoPageLabel: {
+      type: String,
       required: false,
-      type: Number,
-      default: 9
+      default: 'Go to page %page% of %total%'
+    },
+
+    ariaPreviousPageLabel: {
+      type: String,
+      required: false,
+      default: 'Go to previous page'
+    },
+
+    ariaNextPageLabel: {
+      type: String,
+      required: false,
+      default: 'Go to next page'
+    },
+
+    ariaCurrentPageLabel: {
+      type: String,
+      required: false,
+      default: 'Page %current% of %total%, current page'
     },
 
     current: {
@@ -102,60 +126,72 @@ export default {
       type: Number
     },
 
+    slidingEndingSize: {
+      required: false,
+      type: Number,
+      default: 2
+    },
+
     slidingWindowSize: {
       required: false,
       type: Number,
       default: 3
+    },
+
+    nonSlidingSize: {
+      required: false,
+      type: Number,
+      default: 9
     }
   },
 
   computed: {
     /**
+     * @description The number of pages in the gap on the left side of the sliding window
+     * @returns {number}
+     */
+    leftGapPages () {
+      return this.slidingEndingSize + Math.ceil(this.slidingWindowSize / 2)
+    },
+
+    /**
+     * @description The number of pages in the gap on the right side of the sliding window
+     * @returns {number}
+     */
+    rightGapPages () {
+      return this.slidingEndingSize + Math.floor(this.slidingWindowSize / 2)
+    },
+
+    /**
      * @description The page numbers for the ending pages
      * @returns {any}
      */
     leftEndingPages () {
-      return _range(1, this.endingSize + 1)
-    },
-
-    /**
-     * @description The page numbers for the beginning pages
-     * @returns {any}
-     */
-    leftGapPages () {
-      return this.endingSize + Math.ceil(this.slidingWindowSize / 2)
+      return _range(1, this.slidingEndingSize + 1)
     },
 
     /**
      * @description
-     * @returns {any}
+     * @returns {array|number[]}
      */
     rightEndingPages () {
-      return _range(this.total - this.endingSize + 1, this.total + 1)
+      return _range(this.total - this.slidingEndingSize + 1, this.total + 1)
     },
 
     /**
      * @description
      * @returns {any}
      */
-    rightGapPages () {
-      return this.endingSize + Math.floor(this.slidingWindowSize / 2)
-    },
-
-    /**
-     * @description
-     * @returns {any}
-     */
-    slidingWindow () {
-      if (this.total > this.endingSize + this.slidingWindowSize) {
-        if (this.current <= this.endingSize + 1) {
-          return _range(this.endingSize + 1, this.slidingWindowSize + this.endingSize + 1)
+    slidingWindowPages () {
+      if (this.total > this.slidingEndingSize + this.slidingWindowSize) {
+        if (this.current <= this.slidingEndingSize + 1) {
+          return _range(this.slidingEndingSize + 1, this.slidingWindowSize + this.slidingEndingSize + 1)
         }
 
         if (this.current >= this.total - this.slidingWindowSize) {
           return _range(
-            this.total - this.slidingWindowSize - this.endingSize + 1,
-            this.total - this.endingSize + 1
+            this.total - this.slidingWindowSize - this.slidingEndingSize + 1,
+            this.total - this.slidingEndingSize + 1
           )
         }
 
@@ -187,12 +223,32 @@ export default {
   },
 
   methods: {
+    replaceLabelVars (label, page) {
+      return label.replace('%current%', this.current).replace('%total%', this.total).replace('%page%', page)
+    },
+
+    isCurrentPage (page) {
+      return this.current === page
+    },
+
+    currentPageLabel (page) {
+      return this.replaceLabelVars(this.ariaCurrentPageLabel, page)
+    },
+
     /**
-     * @description
+     * @description The `page-change` is fired on every page click and emits the clicked page's number
      * @param {number} page
      */
     goToPage (page) {
       this.$emit('page-change', page)
+    },
+
+    /**
+     * @description ARIA label for page selection
+     * @param {number} page
+     */
+    goToPageLabel (page) {
+      return this.replaceLabelVars(this.ariaGotoPageLabel, page)
     }
   }
 }
