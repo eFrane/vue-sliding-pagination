@@ -8,8 +8,9 @@
     </p>
 
     <sliding-pagination
-      :current="5"
-      :total="10"
+      :current="initialExample.current"
+      :total="initialExample.total"
+      @page-change="initialExample_changePage"
     >
     </sliding-pagination>
 
@@ -29,11 +30,28 @@
 <script>
 
 import SlidingPagination from './components/SlidingPagination.vue'
+import Vue from 'vue'
 
 export default {
   name: 'App',
+
   components: {
     SlidingPagination
+  },
+
+  data () {
+    return {
+      initialExample: {
+        current: 5,
+        total: 10
+      }
+    }
+  },
+
+  methods: {
+    initialExample_changePage (page) {
+      Vue.set(this.initialExample, 'current', page)
+    }
   }
 }
 </script>

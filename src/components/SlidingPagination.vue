@@ -22,7 +22,13 @@
                 :key="page"
                 :class="(isCurrentPage(page)) ? 'active' : ''"
             >
-                <a href="#" @click="goToPage(page)" :aria-label="goToPageLabel(page)">{{ page }}</a>
+                <component
+                  :is="pageComponent"
+                  :is-current="isCurrentPage(page)"
+                  :aria-page-label="pageLabel(page)"
+                  :page="page"
+                  @page-click="goToPage(page)"
+                ></component>
             </li>
 
             <!-- Gap if slide window > beginning !-->
@@ -40,7 +46,13 @@
                 :key="page"
                 :class="(isCurrentPage(page)) ? 'active' : ''"
             >
-                <a href="#" @click="goToPage(page)" :aria-label="goToPageLabel(page)">{{ page }}</a>
+                <component
+                  :is="pageComponent"
+                  :is-current="isCurrentPage(page)"
+                  :aria-page-label="pageLabel(page)"
+                  :page="page"
+                  @page-click="goToPage(page)"
+                ></component>
             </li>
 
             <li
@@ -57,13 +69,13 @@
                     :key="page"
                     :class="(isCurrentPage(page)) ? 'active' : ''"
                 >
-                    <a
-                      href="#"
-                      @click="goToPage(page)"
-                      :aria-label="currentPageLabel(page)"
-                      :aria-current="isCurrentPage(page)"
-                      v-text="page">
-                    </a>
+                    <component
+                      :is="pageComponent"
+                      :is-current="isCurrentPage(page)"
+                      :aria-page-label="pageLabel(page)"
+                      :page="page"
+                      @page-click="goToPage(page)"
+                    ></component>
                 </li>
 
                 <li :class="(current == total) ? 'disabled' : ''">
@@ -83,6 +95,7 @@
 
 <script>
 import _range from 'lodash/range'
+import SlidingPaginationDefaultPage from './SlidingPaginationDefaultPage.vue'
 
 export default {
   props: {
@@ -142,7 +155,17 @@ export default {
       required: false,
       type: Number,
       default: 9
+    },
+
+    pageComponent: {
+      required: false,
+      type: String,
+      default: 'sliding-pagination-default-page'
     }
+  },
+
+  components: {
+    SlidingPaginationDefaultPage
   },
 
   computed: {
@@ -249,6 +272,10 @@ export default {
      */
     goToPageLabel (page) {
       return this.replaceLabelVars(this.ariaGotoPageLabel, page)
+    },
+
+    pageLabel (page) {
+      return (this.isCurrentPage(page)) ? this.currentPageLabel(page) : this.goToPageLabel(page)
     }
   }
 }
