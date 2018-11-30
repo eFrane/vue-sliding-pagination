@@ -1,8 +1,9 @@
-$background-primary: #000 !default;
-$background-secondary: #ccc !default;
-$color-foreground-primary: #fff !default;
-$color-foreground-secondary: #000 !default;
-$transition-duration: 300ms !default;
+$sliding-pagination-background-primary: #246068 !default;
+$sliding-pagination-background-secondary: #69969c !default;
+$sliding-pagination-foreground-primary: #fff !default;
+$sliding-pagination-foreground-secondary: #e9e9e9 !default;
+
+$sliding-pagination-transition-duration: 300ms !default;
 
 .pagination {
     pointer-events: all;
@@ -14,22 +15,22 @@ $transition-duration: 300ms !default;
     }
 
     li {
-      background: $background-primary;
-      color: $color-foreground-primary;
+      background: $sliding-pagination-background-primary;
+      color: $sliding-pagination-foreground-primary;
 
       padding: .6em;
       border-radius: .2em;
       margin-right: .2em;
 
-      transition-duration: $transition-duration;
+      transition-duration: $sliding-pagination-transition-duration;
       transition-property: background, color;
 
       &:hover {
-        transition-duration: $transition-duration;
+        transition-duration: $sliding-pagination-transition-duration;
         transition-property: background, color;
 
-        color: $color-foreground-secondary;
-        background: $background-secondary;
+        color: $sliding-pagination-foreground-secondary;
+        background: $sliding-pagination-background-secondary;
       }
 
       &:last-of-type {
@@ -46,6 +47,16 @@ $transition-duration: 300ms !default;
       a[disabled] {
         pointer-events: none;
         cursor: pointer;
+      }
+
+      &.active {
+        background: $sliding-pagination-background-secondary;
+        color: $sliding-pagination-foreground-secondary;
+      }
+
+      &.active:hover {
+        color: $sliding-pagination-foreground-primary;
+        background: $sliding-pagination-background-primary;
       }
     }
 
