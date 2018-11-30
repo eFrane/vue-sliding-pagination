@@ -187,7 +187,7 @@ export default {
 
     /**
      * @description The page numbers for the ending pages
-     * @returns {any}
+     * @returns {array|number[]}
      */
     leftEndingPages () {
       return _range(1, this.slidingEndingSize + 1)
@@ -203,15 +203,15 @@ export default {
 
     /**
      * @description
-     * @returns {any}
+     * @returns {array|number[]}
      */
     slidingWindowPages () {
       if (this.total > this.slidingEndingSize + this.slidingWindowSize) {
-        if (this.current <= this.slidingEndingSize + 1) {
+        if (this.current <= this.slidingEndingSize + Math.floor(this.slidingWindowSize / 2)) {
           return _range(this.slidingEndingSize + 1, this.slidingWindowSize + this.slidingEndingSize + 1)
         }
 
-        if (this.current >= this.total - this.slidingWindowSize) {
+        if (this.current >= this.total - this.slidingWindowSize - Math.ceil(this.slidingWindowSize / 2)) {
           return _range(
             this.total - this.slidingWindowSize - this.slidingEndingSize + 1,
             this.total - this.slidingEndingSize + 1
