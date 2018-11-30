@@ -10,7 +10,7 @@
                     href="#"
                     :aria-label="ariaPreviousPageLabel"
                     :disabled="current == 1"
-                    @click="goToPage(current - 1)"
+                    @click.prevent.stop="goToPage(current - 1)"
                 >
                     <slot name="previous-page">&laquo;</slot>
                 </a>
@@ -82,7 +82,7 @@
                     <a
                         href="#"
                         :aria-label="ariaNextPageLabel"
-                        @click="goToPage(current + 1)"
+                        @click.prevent.stop="goToPage(current + 1)"
                         :disabled="current == total"
                     >
                         <slot name="next-page">&raquo;</slot>
