@@ -1,16 +1,18 @@
 @import 'variables';
 
-.pagination {
-    pointer-events: all;
+.c-sliding-pagination {
+  pointer-events: all;
+  margin-bottom: 2.4em;
+}
 
-    ul {
-      display: inline;
-      margin: 0;
-      padding: 0;
-    }
+.c-sliding-pagination__list {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
 
-    li {
-      display: inline-block;
+.c-sliding-pagination__list-element {
+  display: inline-block;
 
       background: $sliding-pagination-background-primary;
       color: $sliding-pagination-foreground-primary;
@@ -36,28 +38,31 @@
         margin-right: 0;
       }
 
-      a {
-        color: inherit;
-        padding: 0;
-        margin: 0;
-        text-decoration: none;
-      }
-
-      a[disabled] {
-        pointer-events: none;
-        cursor: pointer;
-      }
-
-      &.active {
+      &--active {
         background: $sliding-pagination-background-secondary;
         color: $sliding-pagination-foreground-secondary;
       }
 
-      &.active:hover {
+      &--active:hover {
         color: $sliding-pagination-foreground-primary;
         background: $sliding-pagination-background-primary;
       }
-    }
 
-    margin-bottom: 2.4em;
+      &--disabled {
+        background: none;
+        color: inherit;
+        cursor: not-allowed;
+      }
+}
+
+.c-sliding-pagination__page {
+    color: inherit;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+
+  &[disabled] {
+    pointer-events: none;
+    cursor: not-allowed;
   }
+}

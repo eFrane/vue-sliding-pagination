@@ -2,7 +2,8 @@
   <a
     href="#"
     @click.stop.prevent="goToPage(page)"
-    :aria-label="ariaPageLabel">
+    :aria-label="ariaPageLabel"
+    class="c-sliding-pagination__page">
     {{ page }}
   </a>
 </template>
