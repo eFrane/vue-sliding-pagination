@@ -14,45 +14,45 @@
 .c-sliding-pagination__list-element {
   display: inline-block;
 
-      background: $sliding-pagination-background-primary;
-      color: $sliding-pagination-foreground-primary;
+  background: $sliding-pagination-background-primary;
+  color: $sliding-pagination-foreground-primary;
 
-      padding: .6em;
-      border-radius: .2em;
-      margin: 0;
-      margin-right: .2em;
-      margin-bottom: 1em;
+  padding: .6em;
+  border-radius: .2em;
+  margin: 0;
+  margin-right: .2em;
+  margin-bottom: 1em;
 
-      transition-duration: $sliding-pagination-transition-duration;
-      transition-property: background, color;
+  transition-duration: $sliding-pagination-transition-duration;
+  transition-property: background, color;
 
-      &:hover {
-        transition-duration: $sliding-pagination-transition-duration;
-        transition-property: background, color;
+  &:hover {
+    transition-duration: $sliding-pagination-transition-duration;
+    transition-property: background, color;
 
-        color: $sliding-pagination-foreground-secondary;
-        background: $sliding-pagination-background-secondary;
-      }
+    color: $sliding-pagination-foreground-secondary;
+    background: $sliding-pagination-background-secondary;
+  }
 
-      &:last-of-type {
-        margin-right: 0;
-      }
+  &:last-of-type {
+    margin-right: 0;
+  }
 
-      &--active {
-        background: $sliding-pagination-background-secondary;
-        color: $sliding-pagination-foreground-secondary;
-      }
+  &--active {
+    background: $sliding-pagination-background-secondary;
+    color: $sliding-pagination-foreground-secondary;
+  }
 
-      &--active:hover {
-        color: $sliding-pagination-foreground-primary;
-        background: $sliding-pagination-background-primary;
-      }
+  &--active:hover {
+    color: $sliding-pagination-foreground-primary;
+    background: $sliding-pagination-background-primary;
+  }
 
-      &--disabled {
-        background: none;
-        color: inherit;
-        cursor: not-allowed;
-      }
+  &--disabled {
+    background: none;
+    color: inherit;
+    cursor: not-allowed;
+  }
 }
 
 .c-sliding-pagination__page {
