@@ -212,7 +212,7 @@ export default {
     },
 
     /**
-     * @description The page numbers for the ending pages
+     * @description The page numbers for the left side ending pages (aka the first few pages)
      * @returns {array|number[]}
      */
     leftEndingPages () {
@@ -220,7 +220,7 @@ export default {
     },
 
     /**
-     * @description
+     * @description The page numbers for the right side ending pages (aka the last few pages)
      * @returns {array|number[]}
      */
     rightEndingPages () {
@@ -228,7 +228,7 @@ export default {
     },
 
     /**
-     * @description
+     * @description The page numbers for the sliding window
      * @returns {array|number[]}
      */
     slidingWindowPages () {
@@ -255,15 +255,15 @@ export default {
     },
 
     /**
-     * @description
-     * @returns {any}
+     * @description Is it possible to go to the previous page?
+     * @returns {bool}
      */
     showPreviousPageAction () {
       return this.total > this.nonSlidingSize
     },
 
     /**
-     * @description
+     * @description Is it possible to go to the next page?
      * @returns {bool}
      */
     showNextPageAction () {
@@ -272,14 +272,33 @@ export default {
   },
 
   methods: {
+    /**
+     * @description Dead-simple template "engine" for aria labels
+     * @param {string} label
+     * @param {number} page
+     * @returns {string}
+     */
     replaceLabelVars (label, page) {
-      return label.replace('%current%', this.current).replace('%total%', this.total).replace('%page%', page)
+      return label
+        .replace('%current%', this.current)
+        .replace('%total%', this.total)
+        .replace('%page%', page)
     },
 
+    /**
+     * @description Is this page the current page?
+     * @param {number} page
+     * @returns {bool}
+     */
     isCurrentPage (page) {
       return this.current === page
     },
 
+    /**
+     * @description ARIA label for the current page
+     * @param {number} page
+     * @returns {string}
+     */
     currentPageLabel (page) {
       return this.replaceLabelVars(this.ariaCurrentPageLabel, page)
     },
@@ -295,11 +314,17 @@ export default {
     /**
      * @description ARIA label for page selection
      * @param {number} page
+     * @returns {string}
      */
     goToPageLabel (page) {
       return this.replaceLabelVars(this.ariaGotoPageLabel, page)
     },
 
+    /**
+     * @description ARIA label for a page, returns either selection or current page label
+     * @param {number} page
+     * @returns {string}
+     */
     pageLabel (page) {
       return (this.isCurrentPage(page)) ? this.currentPageLabel(page) : this.goToPageLabel(page)
     }
