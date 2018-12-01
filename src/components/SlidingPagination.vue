@@ -37,19 +37,21 @@
         />
       </li>
 
-      <!-- Gap if slide window > beginning !-->
+      <!-- Gap if slide window > beginning -->
       <li
         v-if="total > nonSlidingSize && current > leftGapPages"
         class="c-sliding-pagination__list-element c-sliding-pagination__list-element--disabled"
         aria-hidden="true"
       >
-        <a
-          href="#"
-          class="c-sliding-pagination__page"
-          disabled
-        >
-          &hellip;
-        </a>
+        <slot name="gap-left">
+          <a
+            href="#"
+            class="c-sliding-pagination__page"
+            disabled
+          >
+            &hellip;
+          </a>
+        </slot>
       </li>
 
       <!-- Slide window -->
@@ -68,18 +70,21 @@
         />
       </li>
 
+      <!-- Gap if slide window < end -->
       <li
         v-if="total > nonSlidingSize && current + rightGapPages < total"
         class="c-sliding-pagination__list-element c-sliding-pagination__list-element--disabled"
         aria-hidden="true"
       >
-        <a
-          href="#"
-          class="c-sliding-pagination__page"
-          disabled
-        >
-          &hellip;
-        </a>
+        <slot name="gap-right">
+          <a
+            href="#"
+            class="c-sliding-pagination__page"
+            disabled
+          >
+            &hellip;
+          </a>
+        </slot>
       </li>
 
       <template v-if="showNextPageAction">
