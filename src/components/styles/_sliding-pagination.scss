@@ -46,6 +46,7 @@
   &--active:hover {
     color: $sliding-pagination-foreground-primary;
     background: $sliding-pagination-background-primary;
+    cursor: default;
   }
 
   &--disabled {
