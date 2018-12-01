@@ -115,7 +115,7 @@ export default {
   data () {
     return {
       initialExample: {
-        current: 5,
+        current: 1,
         total: 10
       },
       sizeWindowExampleTotal: 20,
