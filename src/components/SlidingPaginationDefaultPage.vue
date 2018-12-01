@@ -27,6 +27,12 @@ export default {
     }
   },
 
+  computed: {
+    currentClass () {
+      return (this.isCurrent) ? 'c-sliding-pagination__page--current' : ''
+    }
+  },
+
   methods: {
     goToPage () {
       this.$emit('page-click', this.page)
