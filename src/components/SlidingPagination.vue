@@ -122,7 +122,7 @@ import _range from 'lodash/range'
 import SlidingPaginationDefaultPage from './SlidingPaginationDefaultPage.vue'
 
 export default {
-  name: "SlidingPagination",
+  name: 'SlidingPagination',
 
   props: {
     ariaPaginationLabel: {
