@@ -11,17 +11,16 @@
       :current="initialExample.current"
       :total="initialExample.total"
       @page-change="initialExample_changePage"
-    >
-    </sliding-pagination>
+    />
 
     <h2>Production Dependencies</h2>
 
     <ul>
       <li>
-          <pre>vue@2</pre>
+        <pre>vue@2</pre>
       </li>
       <li>
-          <pre>lodash/range</pre>
+        <pre>lodash/range</pre>
       </li>
     </ul>
 
@@ -97,8 +96,7 @@
       :sliding-ending-size="sizeWindowExampleEndings"
       :sliding-window-size="sizeWindowExampleWindow"
       @page-change="sizeWindowExample_changePage"
-    >
-    </sliding-pagination>
+    />
   </div>
 </template>
 

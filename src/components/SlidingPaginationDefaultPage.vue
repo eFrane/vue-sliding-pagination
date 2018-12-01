@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'sliding-pagination-default-page',
+  name: 'SlidingPaginationDefaultPage',
 
   props: {
     ariaPageLabel: {

@@ -1,105 +1,120 @@
 <template>
-    <nav class="c-sliding-pagination" :aria-label="ariaPaginationLabel">
-        <ul class="c-sliding-pagination__list">
-            <!-- Previous Page -->
-            <li
-                v-if="showPreviousPageAction"
-                class="c-sliding-pagination__list-element"
-                :class="(current == 1) ? 'c-sliding-pagination__list-element--disabled' : ''"
-            >
-                <a
-                    href="#"
-                    :aria-label="ariaPreviousPageLabel"
-                    :disabled="current == 1"
-                    @click.prevent.stop="goToPage(current - 1)"
-                    class="c-sliding-pagination__page"
-                >
-                    <slot name="previous-page">&laquo;</slot>
-                </a>
-            </li>
+  <nav
+    class="c-sliding-pagination"
+    :aria-label="ariaPaginationLabel"
+  >
+    <ul class="c-sliding-pagination__list">
+      <!-- Previous Page -->
+      <li
+        v-if="showPreviousPageAction"
+        class="c-sliding-pagination__list-element"
+        :class="(current == 1) ? 'c-sliding-pagination__list-element--disabled' : ''"
+      >
+        <a
+          href="#"
+          :aria-label="ariaPreviousPageLabel"
+          :disabled="current == 1"
+          @click.prevent.stop="goToPage(current - 1)"
+          class="c-sliding-pagination__page"
+        >
+          <slot name="previous-page">&laquo;</slot>
+        </a>
+      </li>
 
-            <!-- Beginning Pages -->
-            <li
-                v-for="page in (total <= nonSlidingSize) ? total : leftEndingPages"
-                :key="page"
-                class="c-sliding-pagination__list-element"
-                :class="(isCurrentPage(page)) ? 'c-sliding-pagination__list-element--active' : ''"
-            >
-                <component
-                  :is="pageComponent"
-                  :is-current="isCurrentPage(page)"
-                  :aria-page-label="pageLabel(page)"
-                  :page="page"
-                  @page-click="goToPage(page)"
-                ></component>
-            </li>
+      <!-- Beginning Pages -->
+      <li
+        v-for="page in (total <= nonSlidingSize) ? total : leftEndingPages"
+        :key="page"
+        class="c-sliding-pagination__list-element"
+        :class="(isCurrentPage(page)) ? 'c-sliding-pagination__list-element--active' : ''"
+      >
+        <component
+          :is="pageComponent"
+          :is-current="isCurrentPage(page)"
+          :aria-page-label="pageLabel(page)"
+          :page="page"
+          @page-click="goToPage(page)"
+        />
+      </li>
 
-            <!-- Gap if slide window > beginning !-->
-            <li
-                    v-if="total > nonSlidingSize && current > leftGapPages"
-                    class="c-sliding-pagination__list-element c-sliding-pagination__list-element--disabled"
-                    aria-hidden="true"
-            >
-                <a href="#" class="c-sliding-pagination__page" disabled>&hellip;</a>
-            </li>
+      <!-- Gap if slide window > beginning !-->
+      <li
+        v-if="total > nonSlidingSize && current > leftGapPages"
+        class="c-sliding-pagination__list-element c-sliding-pagination__list-element--disabled"
+        aria-hidden="true"
+      >
+        <a
+          href="#"
+          class="c-sliding-pagination__page"
+          disabled
+        >
+          &hellip;
+        </a>
+      </li>
 
-            <!-- Slide window -->
-            <li
-                v-for="page in slidingWindowPages"
-                :key="page"
-                class="c-sliding-pagination__list-element"
-                :class="(isCurrentPage(page)) ? 'c-sliding-pagination__list-element--active' : ''"
-            >
-                <component
-                  :is="pageComponent"
-                  :is-current="isCurrentPage(page)"
-                  :aria-page-label="pageLabel(page)"
-                  :page="page"
-                  @page-click="goToPage(page)"
-                ></component>
-            </li>
+      <!-- Slide window -->
+      <li
+        v-for="page in slidingWindowPages"
+        :key="page"
+        class="c-sliding-pagination__list-element"
+        :class="(isCurrentPage(page)) ? 'c-sliding-pagination__list-element--active' : ''"
+      >
+        <component
+          :is="pageComponent"
+          :is-current="isCurrentPage(page)"
+          :aria-page-label="pageLabel(page)"
+          :page="page"
+          @page-click="goToPage(page)"
+        />
+      </li>
 
-            <li
-                v-if="total > nonSlidingSize && current + rightGapPages < total"
-                class="c-sliding-pagination__list-element c-sliding-pagination__list-element--disabled"
-                aria-hidden="true"
-            >
-                <a href="#" class="c-sliding-pagination__page" disabled>&hellip;</a>
-            </li>
+      <li
+        v-if="total > nonSlidingSize && current + rightGapPages < total"
+        class="c-sliding-pagination__list-element c-sliding-pagination__list-element--disabled"
+        aria-hidden="true"
+      >
+        <a
+          href="#"
+          class="c-sliding-pagination__page"
+          disabled
+        >
+          &hellip;
+        </a>
+      </li>
 
-            <template v-if="showNextPageAction">
-                <li
-                    v-for="page in rightEndingPages"
-                    :key="page"
-                    class="c-sliding-pagination__list-element"
-                    :class="(isCurrentPage(page)) ? 'c-sliding-pagination__list-element--active' : ''"
-                >
-                    <component
-                      :is="pageComponent"
-                      :is-current="isCurrentPage(page)"
-                      :aria-page-label="pageLabel(page)"
-                      :page="page"
-                      @page-click="goToPage(page)"
-                    ></component>
-                </li>
+      <template v-if="showNextPageAction">
+        <li
+          v-for="page in rightEndingPages"
+          :key="page"
+          class="c-sliding-pagination__list-element"
+          :class="(isCurrentPage(page)) ? 'c-sliding-pagination__list-element--active' : ''"
+        >
+          <component
+            :is="pageComponent"
+            :is-current="isCurrentPage(page)"
+            :aria-page-label="pageLabel(page)"
+            :page="page"
+            @page-click="goToPage(page)"
+          />
+        </li>
 
-                <li
-                  class="c-sliding-pagination__list-element"
-                  :class="(current == total) ? 'c-sliding-pagination__list-element--disabled' : ''"
-                >
-                    <a
-                        href="#"
-                        :aria-label="ariaNextPageLabel"
-                        @click.prevent.stop="goToPage(current + 1)"
-                        :disabled="current == total"
-                        class="c-sliding-pagination__page"
-                    >
-                        <slot name="next-page">&raquo;</slot>
-                    </a>
-                </li>
-            </template>
-        </ul>
-    </nav>
+        <li
+          class="c-sliding-pagination__list-element"
+          :class="(current == total) ? 'c-sliding-pagination__list-element--disabled' : ''"
+        >
+          <a
+            href="#"
+            :aria-label="ariaNextPageLabel"
+            @click.prevent.stop="goToPage(current + 1)"
+            :disabled="current == total"
+            class="c-sliding-pagination__page"
+          >
+            <slot name="next-page">&raquo;</slot>
+          </a>
+        </li>
+      </template>
+    </ul>
+  </nav>
 </template>
 
 <script>
@@ -107,6 +122,8 @@ import _range from 'lodash/range'
 import SlidingPaginationDefaultPage from './SlidingPaginationDefaultPage.vue'
 
 export default {
+  name: "SlidingPagination",
+
   props: {
     ariaPaginationLabel: {
       type: String,
