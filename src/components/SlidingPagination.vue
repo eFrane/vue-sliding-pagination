@@ -123,8 +123,23 @@
 </template>
 
 <script>
-import _range from 'lodash/range'
 import SlidingPaginationDefaultPage from './SlidingPaginationDefaultPage.vue'
+
+export function range (start, end) {
+  let r = [];
+
+  if (start > end) {
+    let temp = start
+    start = end
+    end = temp
+  }
+
+  for (let i = start; i <= end; i++) {
+    r.push(i)
+  }
+
+  return r
+}
 
 export default {
   name: 'SlidingPagination',
@@ -221,7 +236,7 @@ export default {
      * @returns {array|number[]}
      */
     leftEndingPages () {
-      return _range(1, this.slidingEndingSize + 1)
+      return range(1, this.slidingEndingSize + 1)
     },
 
     /**
@@ -229,7 +244,7 @@ export default {
      * @returns {array|number[]}
      */
     rightEndingPages () {
-      return _range(this.total - this.slidingEndingSize + 1, this.total + 1)
+      return range(this.total - this.slidingEndingSize + 1, this.total + 1)
     },
 
     /**
@@ -239,18 +254,18 @@ export default {
     slidingWindowPages () {
       if (this.total > this.slidingEndingSize + this.slidingWindowSize) {
         if (this.current <= this.slidingEndingSize + Math.floor(this.slidingWindowSize / 2)) {
-          return _range(this.slidingEndingSize + 1, this.slidingWindowSize + this.slidingEndingSize + 1)
+          return range(this.slidingEndingSize + 1, this.slidingWindowSize + this.slidingEndingSize + 1)
         }
 
         if (this.current >= this.total - this.slidingWindowSize - Math.ceil(this.slidingWindowSize / 2)) {
-          return _range(
+          return range(
             this.total - this.slidingWindowSize - this.slidingEndingSize + 1,
             this.total - this.slidingEndingSize + 1
           )
         }
 
         // floor and ceil make the range work with odd numbers
-        return _range(
+        return range(
           this.current - Math.floor(this.slidingWindowSize / 2),
           this.current + Math.ceil(this.slidingWindowSize / 2)
         )
