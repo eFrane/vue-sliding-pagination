@@ -13,17 +13,6 @@
       @page-change="initialExample_changePage"
     />
 
-    <h2>Production Dependencies</h2>
-
-    <ul>
-      <li>
-        <pre>vue@2</pre>
-      </li>
-      <li>
-        <pre>lodash/range</pre>
-      </li>
-    </ul>
-
     <h2>Features</h2>
 
     <ul>
