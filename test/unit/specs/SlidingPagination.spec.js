@@ -208,5 +208,4 @@ describe('SlidingPagination.vue', () => {
     expect(eventWrapper.emitted()['page-change'].length).toBe(1)
     expect(eventWrapper.emitted()['page-change'][0]).toEqual([1])
   })
-  // TODO: the page click event test
 })
