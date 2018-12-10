@@ -275,9 +275,9 @@ export default {
           this.total - this.slidingEndingSize
         )
       } else {
-        let evenWindowOffset = 0;
-        if (0 === this.slidingWindowSize % 2) {
-          evenWindowOffset = 1;
+        let evenWindowOffset = 0
+        if (this.slidingWindowSize % 2 === 0) {
+          evenWindowOffset = 1
         }
 
         pages = range(
