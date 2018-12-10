@@ -13,6 +13,9 @@ module.exports = {
   }),
   cssSourceMap: sourceMapEnabled,
   cacheBusting: config.dev.cacheBusting,
+  compilerOptions: {
+    preserveWhitespace: false
+  },
   transformToRequire: {
     video: ['src', 'poster'],
     source: 'src',
