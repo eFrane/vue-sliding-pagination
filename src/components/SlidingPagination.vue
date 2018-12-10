@@ -128,6 +128,10 @@ import SlidingPaginationDefaultPage from './SlidingPaginationDefaultPage.vue'
 export function range (start, end) {
   let r = []
 
+  if (typeof start !== 'number' || typeof end !== 'number') {
+    return r
+  }
+
   if (start > end) {
     let temp = start
     start = end
