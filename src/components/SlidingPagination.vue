@@ -4,7 +4,6 @@
     :aria-label="ariaPaginationLabel"
   >
     <ul class="c-sliding-pagination__list">
-      <!-- Previous Page -->
       <li
         v-if="showPreviousPageAction"
         class="c-sliding-pagination__list-element"
@@ -19,11 +18,9 @@
         >
           <slot name="previous-page">&laquo;</slot>
         </a>
-      </li>
-
-      <!-- Beginning Pages -->
-      <li
-        v-for="page in (total <= nonSlidingSize) ? total : leftEndingPages"
+      </li><!--
+      --><li
+        v-for="page in beginningPages"
         :key="page"
         class="c-sliding-pagination__list-element"
         :class="(isCurrentPage(page)) ? 'c-sliding-pagination__list-element--active' : ''"
@@ -35,11 +32,9 @@
           :page="page"
           @page-click="goToPage(page)"
         />
-      </li>
-
-      <!-- Gap if slide window > beginning -->
-      <li
-        v-if="total > nonSlidingSize && current > leftGapPages"
+      </li><!--
+      --><li
+        v-if="hasBeginningGap"
         class="c-sliding-pagination__list-element c-sliding-pagination__list-element--disabled"
         aria-hidden="true"
       >
@@ -52,10 +47,8 @@
             &hellip;
           </a>
         </slot>
-      </li>
-
-      <!-- Slide window -->
-      <li
+      </li><!--
+      --><li
         v-for="page in slidingWindowPages"
         :key="page"
         class="c-sliding-pagination__list-element"
@@ -68,11 +61,9 @@
           :page="page"
           @page-click="goToPage(page)"
         />
-      </li>
-
-      <!-- Gap if slide window < end -->
-      <li
-        v-if="total > nonSlidingSize && current + rightGapPages < total"
+      </li><!--
+      --><li
+        v-if="hasEndingGap"
         class="c-sliding-pagination__list-element c-sliding-pagination__list-element--disabled"
         aria-hidden="true"
       >
@@ -85,39 +76,36 @@
             &hellip;
           </a>
         </slot>
+      </li><!--
+      --><li
+        v-for="page in endingPages"
+        :key="page"
+        class="c-sliding-pagination__list-element"
+        :class="(isCurrentPage(page)) ? 'c-sliding-pagination__list-element--active' : ''"
+      >
+        <component
+          :is="pageComponent"
+          :is-current="isCurrentPage(page)"
+          :aria-page-label="pageLabel(page)"
+          :page="page"
+          @page-click="goToPage(page)"
+        />
+      </li><!--
+      --><li
+        class="c-sliding-pagination__list-element"
+        :class="(current == total) ? 'c-sliding-pagination__list-element--disabled' : ''"
+        v-if="showNextPageAction"
+      >
+        <a
+          href="#"
+          :aria-label="ariaNextPageLabel"
+          @click.prevent.stop="goToPage(current + 1)"
+          :disabled="current == total"
+          class="c-sliding-pagination__page"
+        >
+          <slot name="next-page">&raquo;</slot>
+        </a>
       </li>
-
-      <template v-if="showNextPageAction">
-        <li
-          v-for="page in rightEndingPages"
-          :key="page"
-          class="c-sliding-pagination__list-element"
-          :class="(isCurrentPage(page)) ? 'c-sliding-pagination__list-element--active' : ''"
-        >
-          <component
-            :is="pageComponent"
-            :is-current="isCurrentPage(page)"
-            :aria-page-label="pageLabel(page)"
-            :page="page"
-            @page-click="goToPage(page)"
-          />
-        </li>
-
-        <li
-          class="c-sliding-pagination__list-element"
-          :class="(current == total) ? 'c-sliding-pagination__list-element--disabled' : ''"
-        >
-          <a
-            href="#"
-            :aria-label="ariaNextPageLabel"
-            @click.prevent.stop="goToPage(current + 1)"
-            :disabled="current == total"
-            class="c-sliding-pagination__page"
-          >
-            <slot name="next-page">&raquo;</slot>
-          </a>
-        </li>
-      </template>
     </ul>
   </nav>
 </template>
@@ -219,36 +207,52 @@ export default {
   },
 
   computed: {
-    /**
-     * @description The number of pages in the gap on the left side of the sliding window
-     * @returns {number}
-     */
-    leftGapPages () {
-      return this.slidingEndingSize + Math.ceil(this.slidingWindowSize / 2)
+    isSliding () {
+      return this.total > this.nonSlidingSize
     },
 
-    /**
-     * @description The number of pages in the gap on the right side of the sliding window
-     * @returns {number}
-     */
-    rightGapPages () {
-      return this.slidingEndingSize + Math.floor(this.slidingWindowSize / 2)
+    hasBeginningGap () {
+      if (!this.isSliding) {
+        return false
+      }
+
+      return this.current > this.beginningPages[this.beginningPages.length - 1] + this.slidingWindowHalf
+    },
+
+    hasEndingGap () {
+      if (!this.isSliding) {
+        return false
+      }
+
+      return this.current < this.endingPages[0] - this.slidingWindowHalf
     },
 
     /**
      * @description The page numbers for the left side ending pages (aka the first few pages)
      * @returns {array|number[]}
      */
-    leftEndingPages () {
-      return range(1, this.slidingEndingSize + 1)
+    beginningPages () {
+      return range(1, (this.isSliding) ? this.slidingEndingSize : this.total)
     },
 
     /**
      * @description The page numbers for the right side ending pages (aka the last few pages)
      * @returns {array|number[]}
      */
-    rightEndingPages () {
-      return range(this.total - this.slidingEndingSize + 1, this.total + 1)
+    endingPages () {
+      if (!this.isSliding) {
+        return []
+      }
+
+      return range(this.total - this.slidingEndingSize + 1, this.total)
+    },
+
+    slidingWindowHalf () {
+      let half = this.slidingWindowSize / 2
+
+      return (this.slidingEndingSize % 2 === 0)
+        ? Math.ceil(half)
+        : Math.floor(half)
     },
 
     /**
@@ -256,26 +260,33 @@ export default {
      * @returns {array|number[]}
      */
     slidingWindowPages () {
-      if (this.total > this.slidingEndingSize + this.slidingWindowSize) {
-        if (this.current <= this.slidingEndingSize + Math.floor(this.slidingWindowSize / 2)) {
-          return range(this.slidingEndingSize + 1, this.slidingWindowSize + this.slidingEndingSize + 1)
+      let pages = []
+
+      if (!this.isSliding) {
+        return pages
+      } else if (this.current <= this.slidingEndingSize + this.slidingWindowHalf) {
+        pages = range(
+          this.slidingEndingSize + 1,
+          this.slidingEndingSize + this.slidingWindowSize
+        )
+      } else if (this.current >= this.endingPages[0] - this.slidingWindowHalf) {
+        pages = range(
+          this.total - this.slidingEndingSize - this.slidingWindowSize + 1,
+          this.total - this.slidingEndingSize
+        )
+      } else {
+        let evenWindowOffset = 0;
+        if (0 === this.slidingWindowSize % 2) {
+          evenWindowOffset = 1;
         }
 
-        if (this.current >= this.total - this.slidingWindowSize - Math.ceil(this.slidingWindowSize / 2)) {
-          return range(
-            this.total - this.slidingWindowSize - this.slidingEndingSize + 1,
-            this.total - this.slidingEndingSize + 1
-          )
-        }
-
-        // floor and ceil make the range work with odd numbers
-        return range(
-          this.current - Math.floor(this.slidingWindowSize / 2),
-          this.current + Math.ceil(this.slidingWindowSize / 2)
+        pages = range(
+          this.current - Math.floor(this.slidingWindowHalf / 2) - evenWindowOffset,
+          this.current + Math.ceil(this.slidingWindowHalf / 2)
         )
       }
 
-      return []
+      return pages
     },
 
     /**
