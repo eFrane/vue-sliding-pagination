@@ -38,15 +38,13 @@
         class="c-sliding-pagination__list-element c-sliding-pagination__list-element--disabled"
         aria-hidden="true"
       >
-        <slot name="gap-left">
-          <a
-            href="#"
-            class="c-sliding-pagination__page"
-            disabled
-          >
-            &hellip;
-          </a>
-        </slot>
+        <a
+          href="#"
+          class="c-sliding-pagination__page"
+          disabled
+        >
+          <slot name="gap-left">&hellip;</slot>
+        </a>
       </li><!--
       --><li
         v-for="page in slidingWindowPages"
@@ -67,15 +65,13 @@
         class="c-sliding-pagination__list-element c-sliding-pagination__list-element--disabled"
         aria-hidden="true"
       >
-        <slot name="gap-right">
-          <a
-            href="#"
-            class="c-sliding-pagination__page"
-            disabled
-          >
-            &hellip;
-          </a>
-        </slot>
+        <a
+          href="#"
+          class="c-sliding-pagination__page"
+          disabled
+        >
+          <slot name="gap-right">&hellip;</slot>
+        </a>
       </li><!--
       --><li
         v-for="page in endingPages"
@@ -164,7 +160,7 @@ export default {
     ariaCurrentPageLabel: {
       type: String,
       required: false,
-      default: 'Page %current% of %total%, current page'
+      default: 'Page %page% of %total%, current page'
     },
 
     current: {
@@ -315,7 +311,6 @@ export default {
      */
     replaceLabelVars (label, page) {
       return label
-        .replace('%current%', this.current)
         .replace('%total%', this.total)
         .replace('%page%', page)
     },
