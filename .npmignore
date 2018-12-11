@@ -1,0 +1,7 @@
+test
+src
+.*
+yarn.lock
+webpack.config.js
+*.tgz
+yarn-error.log
