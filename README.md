@@ -1,3 +1,5 @@
+[TODO:] [Insert] [a crapton] [of badges] [here] [because] [javascript]
+
 # vue-sliding-pagination
 
 Pagination component with a sliding window.
@@ -5,6 +7,8 @@ Pagination component with a sliding window.
 ## Usage
 
 ## Options
+
+## Customization
 
 ## Contributing
 
