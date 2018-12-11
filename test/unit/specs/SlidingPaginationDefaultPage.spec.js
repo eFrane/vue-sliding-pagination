@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import SlidingPaginationDefaultPage from '@/components/SlidingPaginationDefaultPage.vue'
+import SlidingPaginationDefaultPage from '@/SlidingPaginationDefaultPage.vue'
 
 describe('SlidingPaginationDefaultPage.vue', () => {
   it('is named correctly', () => {

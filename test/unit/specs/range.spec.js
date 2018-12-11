@@ -1,4 +1,4 @@
-import { range } from '@/components/SlidingPagination.vue'
+import { range } from '@/SlidingPagination.vue'
 
 describe('range', () => {
   it('returns a range from start to end', () => {

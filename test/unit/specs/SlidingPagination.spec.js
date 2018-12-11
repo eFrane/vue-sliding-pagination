@@ -1,7 +1,7 @@
 import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
 
-import SlidingPagination from '@/components/SlidingPagination.vue'
-import SlidingPaginationDefaultPage from '@/components/SlidingPaginationDefaultPage.vue'
+import SlidingPagination from '@/SlidingPagination.vue'
+import SlidingPaginationDefaultPage from '@/SlidingPaginationDefaultPage.vue'
 
 describe('SlidingPagination.vue', () => {
   it('is named correctly', () => {
@@ -226,7 +226,7 @@ describe('SlidingPagination.vue-custom', () => {
         }
       },
 
-      render(h) {
+      render (h) {
         return h('a', { class: 'test-page-component' }, 'Test Page ' + this.page)
       }
     })
