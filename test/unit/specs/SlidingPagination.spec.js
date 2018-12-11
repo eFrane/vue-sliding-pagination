@@ -1,4 +1,5 @@
-import { mount, shallowMount } from '@vue/test-utils'
+import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
+
 import SlidingPagination from '@/components/SlidingPagination.vue'
 import SlidingPaginationDefaultPage from '@/components/SlidingPaginationDefaultPage.vue'
 
@@ -207,5 +208,38 @@ describe('SlidingPagination.vue', () => {
     expect(eventWrapper.emitted()['page-change']).toBeTruthy()
     expect(eventWrapper.emitted()['page-change'].length).toBe(1)
     expect(eventWrapper.emitted()['page-change'][0]).toEqual([1])
+  })
+})
+
+// TODO: Page swap test
+describe('SlidingPagination.vue-custom', () => {
+  it('supports replacing the default page component', () => {
+    let localVue = createLocalVue()
+
+    localVue.component('TestPageComponent', {
+      name: 'TestPageComponent',
+
+      props: {
+        page: {
+          type: Number,
+          required: true
+        }
+      },
+
+      render(h) {
+        return h('a', { class: 'test-page-component' }, 'Test Page ' + this.page)
+      }
+    })
+
+    let wrapper = mount(SlidingPagination, {
+      localVue,
+      propsData: {
+        current: 1,
+        total: 3,
+        pageComponent: 'TestPageComponent'
+      }
+    })
+
+    expect(wrapper.find('.test-page-component').text()).toBe('Test Page 1')
   })
 })
