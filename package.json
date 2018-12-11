@@ -3,7 +3,7 @@
   "version": "1.0.0-beta-1",
   "description": "Sliding pagination component",
   "author": "eFrane <efrane@meanderingsoul.com>",
-  "private": false,
+  "license": "MIT",
   "main": "dist/vue-sliding-pagination.umd.js",
   "unpkg": "dist/vue-sliding-pagination.min.js",
   "scripts": {
