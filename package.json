@@ -1,6 +1,6 @@
 {
   "name": "vue-sliding-pagination",
-  "version": "1.0.0-beta-1",
+  "version": "1.0.0-beta-2",
   "description": "Sliding pagination component",
   "author": "eFrane <efrane@meanderingsoul.com>",
   "license": "MIT",
@@ -8,11 +8,10 @@
   "unpkg": "dist/vue-sliding-pagination.min.js",
   "scripts": {
     "build": "rimraf ./dist && webpack --config webpack.config.js",
-    "unit": "jest --config test/unit/jest.conf.js --coverage",
-    "package": "yarn run prepublish && yarn pack",
-    "prepublish": "yarn run lint && yarn run test && yarn run build",
+    "unit": "jest --config test/unit/jest.conf.js",
+    "prepare": "yarn run lint && yarn run test && yarn run build",
     "tdd": "yarn run unit --watch",
-    "test": "yarn run unit",
+    "test": "yarn run unit --coverage",
     "lint": "eslint --ext .js,.vue src test/unit"
   },
   "dependencies": {
