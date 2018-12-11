@@ -1,6 +1,6 @@
 import SlidingPagination from './SlidingPagination.vue'
 
-module.exports = {
+export default {
   install: function (Vue, options) {
     Vue.component('SlidingPagination', SlidingPagination)
   }
