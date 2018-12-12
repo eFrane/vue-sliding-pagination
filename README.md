@@ -47,7 +47,13 @@ point:
 ```
 
 ```js
+import SlidingPagination from 'vue-sliding-pagination'
+
 // in component or vue instance
+components: {
+  // ...
+  SlidingPagination
+},
 data() {
   return {
     // ...
