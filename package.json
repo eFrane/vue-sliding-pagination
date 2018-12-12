@@ -6,6 +6,11 @@
   "license": "MIT",
   "main": "dist/vue-sliding-pagination.umd.js",
   "unpkg": "dist/vue-sliding-pagination.min.js",
+  "keywords": [
+    "pagination",
+    "vue",
+    "sliding window"
+  ],
   "scripts": {
     "build": "rimraf ./dist && webpack --config webpack.config.js",
     "unit": "jest --config test/unit/jest.conf.js",
