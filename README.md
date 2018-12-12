@@ -4,6 +4,8 @@
 
 > ARIA-friendly pagination component with a sliding window.
 
+**Disclaimer**: This package is currently still in beta and **not recommended** for production use yet.
+
 ## Installation
 
 ### Node
@@ -129,7 +131,7 @@ Since actual pages are the most active element of the whole pagination deal,
 they have been implemented with the `<component :is="paginationComponent">` pattern.
 
 The `SlidingPaginationDefaultPage` component offers guidance into how a basic
-component representation page elements should look like. It's unit test can
+component representing page elements should look like. It's unit test can
 be used as a basis for unit testing custom page components.
 
 The page component receives the following props:
@@ -141,8 +143,8 @@ The page component receives the following props:
 | page          | Number  | The page number to display   |
 
 It is by no means required to implement all properties of the default page.
-A custom paginatino components can usually just be implemented as render
-functions, e.g.
+A custom pagination component can usually just be implemented as render
+function, e.g.
 
 ```js
 Vue.component('ExamplePageComponent', {
@@ -168,6 +170,24 @@ Vue.component('ExamplePageComponent', {
 
 _Please keep in mind that the above example is absurdly simple for demonstration purposes
 and breaks the ARIA compatibility of the whole pagination component._
+
+### Styling
+
+The CSS classes used in the component are following the [BEM](http://getbem.com/introduction/)-Methodology,
+regarding **only** the component itself as a block and going downward from there, thus the
+corresponding classes to interface elements are:
+
+| Class                                         | Interface element                                                |
+|-----------------------------------------------|------------------------------------------------------------------|
+| .c-sliding-pagination                         | The whole component i.e. the `<nav>` container                   |
+| .c-sliding-pagination__list                   | The `<ul>` containing all navigational and page elements         |
+| .c-sliding-pagination__list-element           | Each `<li>` representing either a navigational or a page element |
+| .c-sliding-pagination__list-element--active   | The `<li>` representing the current page                         |
+| .c-sliding-pagination__list-element--disabled | Disabled navigational elements                                   |
+| .c-sliding-pagination__page                   | The page element inside an `<li>` (typically an `<a>`)           |
+
+For ease of customization, the original SCSS styling files are available in the distribution package
+in the `dist/styles` subdir.
 
 ## Contributing
 
