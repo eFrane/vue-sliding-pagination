@@ -71,6 +71,9 @@ methods: {
 }
 ```
 
+Additionally, the CSS for the component should be made available. Please refer to
+the [Styles customization section](#styling) below
+
 ## Options
 
 | name                  | type   | default                                   | description                                                   |
@@ -196,8 +199,30 @@ corresponding classes to interface elements are:
 | .c-sliding-pagination__list-element--disabled | Disabled navigational elements                                   |
 | .c-sliding-pagination__page                   | The page element inside an `<li>` (typically an `<a>`)           |
 
+To get the default styling, you may either add `dist/style/vue-sliding-pagination.css` as a
+CSS asset to your page:
+
+```css
+@import "~vue-sliding-pagination/dist/style/vue-sliding-pagination.css";
+```
+
 For ease of customization, the original SCSS styling files are available in the distribution package
-in the `dist/styles` subdir.
+in the `dist/style` subdir, allowing quick and deep customization by utilizing the exposed variables
+and re-declaring classes:
+
+```scss
+$sliding-pagination-background-primary: $background-primary;
+$sliding-pagination-background-secondary: $background-secondary;
+$sliding-pagination-foreground-primary: $color-foreground-primary;
+$sliding-pagination-foreground-secondary: $color-foreground-secondary;
+
+@import "~vue-sliding-pagination/dist/style/sliding-pagination";
+
+.c-sliding-pagination {
+  text-align: center;
+  margin: 1.5em 0;
+}
+```
 
 ## Contributing
 
