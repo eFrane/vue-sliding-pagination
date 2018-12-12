@@ -1,5 +1,7 @@
 [TODO:] [Insert] [a crapton] [of badges] [here] [because] [javascript]
 
+[![Build Status](https://travis-ci.org/eFrane/vue-sliding-pagination.svg?branch=master)](https://travis-ci.org/eFrane/vue-sliding-pagination)
+
 # Sliding Pagination for Vue
 
 > ARIA-friendly pagination component with a sliding window.
