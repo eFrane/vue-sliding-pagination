@@ -4,6 +4,8 @@
 
 > ARIA-friendly pagination component with a sliding window.
 
+![Example pagination](pagination-example.png)
+
 **Disclaimer**: This package is currently still in beta and **not recommended** for production use yet.
 
 ## Installation
