@@ -1,10 +1,8 @@
-const webpack = require('webpack')
 const merge = require('webpack-merge')
 const path = require('path')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-
-let cssExtract = new ExtractTextPlugin('vue-sliding-pagination.css')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 function resolve (dir) {
   return path.join(__dirname, dir)
@@ -14,15 +12,17 @@ let common = {
   externals: [
     'vue'
   ],
+  mode: 'development',
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
           compilerOptions: {
             preserveWhitespace: false
-          }
+          },
+          hotReload: false
         }
       },
       {
@@ -33,45 +33,42 @@ let common = {
           /node_modules/.test(file) &&
           !/\.vue\.js/.test(file)
         )
-      }
+      },
+      {
+        test: /\.s?css$/,
+        loader:
+          [
+            MiniCSSExtractPlugin.loader,
+            'css-loader',
+            'sass-loader'
+          ]
+      },
     ]
   },
   output: {
     path: resolve('/dist')
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      minimize : true,
-      sourceMap : false,
-      mangle: true,
-      compress: {
-        warnings: false
-      }
-    })
+    new MiniCSSExtractPlugin({
+      filename: 'style/vue-sliding-pagination.css',
+    }),
+    new VueLoaderPlugin()
   ]
 }
 
 module.exports = [
   // browser build
   merge(common, {
+    mode: 'production',
     entry: resolve('/src/plugin.js'),
     output: {
-      filename: 'vue-sliding-pagination.min.js',
-      libraryTarget: 'window',
-      library: 'VueSlidingPagination',
+      filename: 'browser/vue-sliding-pagination.min.js',
     },
-    module: {
-      loaders: [
-        {
-          test: /\.css$/,
-          loader: 'vue-style-loader!css-loader!post-css-loader!sass-loader',
-        }
-      ]
-    }
   }),
 
   // node module build
   merge(common, {
+    mode: 'production',
     entry: resolve('/src/SlidingPagination.vue'),
     output: {
       filename: 'vue-sliding-pagination.umd.js',
@@ -80,30 +77,14 @@ module.exports = [
       library: 'vue-sliding-pagination',
       umdNamedDefine: true
     },
-    module: {
-      loaders: [
-        {
-          test: /\.css$/,
-          loader: cssExtract.extract({
-            use: [
-              'css-loader',
-              'post-css-loader',
-              'sass-loader'
-            ],
-            fallback: 'vue-style-loader'
-          })
-        }
-      ]
-    },
     plugins: [
       new CopyWebpackPlugin([
         {
           from: './src/styles/*',
-          to: 'scss/[name].[ext]',
+          to: 'style/[name].[ext]',
           toType: 'template'
         }
       ]),
-      cssExtract
     ]
   })
 ];
