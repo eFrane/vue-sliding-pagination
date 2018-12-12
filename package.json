@@ -1,11 +1,11 @@
 {
   "name": "vue-sliding-pagination",
-  "version": "1.0.0-beta-4",
+  "version": "1.0.0-beta-5",
   "description": "Sliding pagination component",
   "author": "eFrane <efrane@meanderingsoul.com>",
   "license": "MIT",
   "main": "dist/vue-sliding-pagination.umd.js",
-  "unpkg": "dist/vue-sliding-pagination.min.js",
+  "unpkg": "dist/browser/vue-sliding-pagination.min.js",
   "keywords": [
     "pagination",
     "vue",
