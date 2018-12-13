@@ -6,7 +6,7 @@
 
 > ARIA-friendly pagination component with a sliding window.
 
-![Example pagination](pagination-example.png)
+![Example pagination](https://github.com/eFrane/vue-sliding-pagination/raw/master/pagination-example.png)
 
 **Disclaimer**: This package is currently still in beta and **not recommended** for production use yet.
 
