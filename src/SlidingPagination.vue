@@ -212,7 +212,7 @@ export default {
         return false
       }
 
-      return this.current > this.beginningPages[this.beginningPages.length - 1] + this.slidingWindowHalf
+      return this.lastBeginningPage + 1 !== this.firstWindowPage
     },
 
     hasEndingGap () {
@@ -220,7 +220,7 @@ export default {
         return false
       }
 
-      return this.current < this.endingPages[0] - this.slidingWindowHalf
+      return this.lastWindowPage + 1 !== this.firstEndingPage
     },
 
     /**
@@ -229,6 +229,10 @@ export default {
      */
     beginningPages () {
       return range(1, (this.isSliding) ? this.slidingEndingSize : this.total)
+    },
+
+    lastBeginningPage () {
+      return this.beginningPages[this.beginningPages.length - 1]
     },
 
     /**
@@ -243,12 +247,18 @@ export default {
       return range(this.total - this.slidingEndingSize + 1, this.total)
     },
 
+    firstEndingPage () {
+      return this.endingPages[0]
+    },
+
     slidingWindowHalf () {
       let half = this.slidingWindowSize / 2
 
-      return (this.slidingEndingSize % 2 === 0)
-        ? Math.ceil(half)
-        : Math.floor(half)
+      if (this.slidingWindowSize % 2 === 1) {
+        half -= 0.5
+      }
+
+      return half
     },
 
     /**
@@ -256,33 +266,35 @@ export default {
      * @returns {array|number[]}
      */
     slidingWindowPages () {
-      let pages = []
-
       if (!this.isSliding) {
-        return pages
-      } else if (this.current <= this.slidingEndingSize + this.slidingWindowHalf) {
-        pages = range(
-          this.slidingEndingSize + 1,
-          this.slidingEndingSize + this.slidingWindowSize
-        )
-      } else if (this.current >= this.endingPages[0] - this.slidingWindowHalf) {
-        pages = range(
-          this.total - this.slidingEndingSize - this.slidingWindowSize + 1,
-          this.total - this.slidingEndingSize
-        )
-      } else {
-        let evenWindowOffset = 0
-        if (this.slidingWindowSize % 2 === 0) {
-          evenWindowOffset = 1
-        }
-
-        pages = range(
-          this.current - Math.floor(this.slidingWindowHalf / 2) - evenWindowOffset,
-          this.current + Math.ceil(this.slidingWindowHalf / 2)
-        )
+        return []
       }
 
-      return pages
+      let startOffset = this.lastBeginningPage + this.slidingWindowHalf
+      let endOffset = this.firstEndingPage - this.slidingWindowHalf
+
+      if (this.current <= startOffset) {
+        return range(this.lastBeginningPage + 1, this.lastBeginningPage + this.slidingWindowSize)
+      }
+
+      if (this.current > startOffset && this.current < endOffset) {
+        let upperHalfForEvenWindowSizes = this.slidingWindowHalf
+        if (this.slidingWindowSize % 2 === 0) {
+          upperHalfForEvenWindowSizes /= 2
+        }
+
+        return range(-this.slidingWindowHalf + this.current, upperHalfForEvenWindowSizes + this.current)
+      }
+
+      return range(this.firstEndingPage - this.slidingWindowSize, this.firstEndingPage - 1)
+    },
+
+    firstWindowPage () {
+      return this.slidingWindowPages[0]
+    },
+
+    lastWindowPage () {
+      return this.slidingWindowPages[this.slidingWindowPages.length - 1]
     },
 
     /**
