@@ -13,7 +13,8 @@
   "keywords": [
     "pagination",
     "vue",
-    "sliding window"
+    "sliding window",
+    "moving window"
   ],
   "scripts": {
     "build": "rimraf ./dist && webpack --config webpack.config.js",
