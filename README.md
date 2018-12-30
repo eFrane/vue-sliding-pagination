@@ -8,8 +8,6 @@
 
 ![Example pagination](https://github.com/eFrane/vue-sliding-pagination/raw/master/pagination-example.png)
 
-**Disclaimer**: This package is currently still in beta and **not recommended** for production use yet.
-
 ## Installation
 
 ### Node
