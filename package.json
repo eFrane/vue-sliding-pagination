@@ -5,6 +5,7 @@
     "type": "git",
     "url": "https://github.com/eFrane/vue-sliding-pagination"
   },
+  "homepage": "https://vue-sliding-pagination.efrane.com",
   "description": "Sliding pagination component",
   "author": "eFrane <efrane@meanderingsoul.com>",
   "license": "MIT",
