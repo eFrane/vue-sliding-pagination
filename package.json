@@ -25,6 +25,7 @@
     "tdd": "yarn run unit --watch",
     "test": "yarn run unit --coverage",
     "lint": "eslint --ext .js,.vue src test/unit",
+    "pr": "yarn && yarn prepare && yarn prepack && echo 'Please check if the documentation still works'",
     "vuepress:dev": "vuepress dev docs",
     "vuepress:build": "vuepress build docs"
   },
