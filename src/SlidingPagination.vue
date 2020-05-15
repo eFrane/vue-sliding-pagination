@@ -1,20 +1,19 @@
 <template>
   <nav
-    class="c-sliding-pagination"
+    :class="classMap.component"
     :aria-label="ariaPaginationLabel"
   >
-    <ul class="c-sliding-pagination__list">
+    <ul :class="classMap.list">
       <li
         v-if="showPreviousPageAction"
-        class="c-sliding-pagination__list-element"
-        :class="(current == 1) ? 'c-sliding-pagination__list-element--disabled' : ''"
+        :class="[classMap.element, (current == 1) ? classMap.elementDisabled : '']"
       >
         <a
           href="#"
           :aria-label="ariaPreviousPageLabel"
           :disabled="current == 1"
           @click.prevent.stop="goToPage(current - 1)"
-          class="c-sliding-pagination__page"
+          :class="classMap.page"
         >
           <slot name="previous-page">&laquo;</slot>
         </a>
@@ -22,25 +21,25 @@
       --><li
         v-for="page in beginningPages"
         :key="page"
-        class="c-sliding-pagination__list-element"
-        :class="(isCurrentPage(page)) ? 'c-sliding-pagination__list-element--active' : ''"
+        :class="[classMap.element, isCurrentPage(page) ? classMap.elementActive : '']"
       >
         <component
           :is="pageComponent"
           :is-current="isCurrentPage(page)"
           :aria-page-label="pageLabel(page)"
           :page="page"
+          :page-class="classMap.page"
           @page-click="goToPage(page)"
         />
       </li><!--
       --><li
         v-if="hasBeginningGap"
-        class="c-sliding-pagination__list-element c-sliding-pagination__list-element--disabled"
+        :class="[classMap.element, classMap.elementDisabled]"
         aria-hidden="true"
       >
         <a
           href="#"
-          class="c-sliding-pagination__page"
+          :class="classMap.page"
           disabled
         >
           <slot name="gap-left">&hellip;</slot>
@@ -49,25 +48,25 @@
       --><li
         v-for="page in slidingWindowPages"
         :key="page"
-        class="c-sliding-pagination__list-element"
-        :class="(isCurrentPage(page)) ? 'c-sliding-pagination__list-element--active' : ''"
+        :class="[classMap.element, isCurrentPage(page) ? classMap.elementActive : '']"
       >
         <component
           :is="pageComponent"
           :is-current="isCurrentPage(page)"
           :aria-page-label="pageLabel(page)"
           :page="page"
+          :page-class="classMap.page"
           @page-click="goToPage(page)"
         />
       </li><!--
       --><li
         v-if="hasEndingGap"
-        class="c-sliding-pagination__list-element c-sliding-pagination__list-element--disabled"
+        :class="[classMap.element, classMap.elementDisabled]"
         aria-hidden="true"
       >
         <a
           href="#"
-          class="c-sliding-pagination__page"
+          :class="classMap.page"
           disabled
         >
           <slot name="gap-right">&hellip;</slot>
@@ -76,20 +75,20 @@
       --><li
         v-for="page in endingPages"
         :key="page"
-        class="c-sliding-pagination__list-element"
-        :class="(isCurrentPage(page)) ? 'c-sliding-pagination__list-element--active' : ''"
+        :class="[classMap.element, isCurrentPage(page) ? classMap.elementActive : '']"
       >
         <component
           :is="pageComponent"
           :is-current="isCurrentPage(page)"
           :aria-page-label="pageLabel(page)"
           :page="page"
+          :page-class="classMap.page"
           @page-click="goToPage(page)"
         />
       </li><!--
       --><li
         class="c-sliding-pagination__list-element"
-        :class="(current == total) ? 'c-sliding-pagination__list-element--disabled' : ''"
+        :class="[classMap.element, (current == total) ? classMap.elementDisabled : '']"
         v-if="showNextPageAction"
       >
         <a
@@ -97,7 +96,7 @@
           :aria-label="ariaNextPageLabel"
           @click.prevent.stop="goToPage(current + 1)"
           :disabled="current == total"
-          class="c-sliding-pagination__page"
+          :class="classMap.page"
         >
           <slot name="next-page">&raquo;</slot>
         </a>
@@ -108,6 +107,7 @@
 
 <script>
 import SlidingPaginationDefaultPage from './SlidingPaginationDefaultPage.vue'
+import defaultClassMap from './defaultClassMap.json'
 
 export function range (start, end) {
   let r = []
@@ -161,6 +161,14 @@ export default {
       type: String,
       required: false,
       default: 'Page %page% of %total%, current page'
+    },
+
+    classMap: {
+      type: Object,
+      required: false,
+      default: () => {
+        return defaultClassMap
+      }
     },
 
     current: {
