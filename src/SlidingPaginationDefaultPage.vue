@@ -3,7 +3,7 @@
     href="#"
     @click.stop.prevent="goToPage(page)"
     :aria-label="ariaPageLabel"
-    class="c-sliding-pagination__page"
+    :class="pageClass"
   >
     {{ page }}
   </a>
@@ -24,6 +24,10 @@ export default {
     },
     page: {
       type: Number,
+      required: true
+    },
+    pageClass: {
+      type: String,
       required: true
     }
   },

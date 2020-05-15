@@ -12,6 +12,12 @@ describe('SlidingPaginationDefaultPage.vue', () => {
     expect(SlidingPaginationDefaultPage.props.ariaPageLabel.type).toBe(String)
   })
 
+  it('requires a page class', () => {
+    expect(SlidingPaginationDefaultPage.props).toHaveProperty('pageClass.required')
+    expect(SlidingPaginationDefaultPage.props.ariaPageLabel.required).toBe(true)
+    expect(SlidingPaginationDefaultPage.props.ariaPageLabel.type).toBe(String)
+  })
+
   it('requires a page number', () => {
     expect(SlidingPaginationDefaultPage.props).toHaveProperty('page.required')
     expect(SlidingPaginationDefaultPage.props.page.required).toBe(true)
@@ -29,7 +35,8 @@ describe('SlidingPaginationDefaultPage.vue', () => {
       propsData: {
         ariaPageLabel: 'Page label',
         isCurrent: false,
-        page: 1
+        page: 1,
+        pageClass: 'c-sliding-pagination__page'
       }
     })
 
@@ -44,7 +51,8 @@ describe('SlidingPaginationDefaultPage.vue', () => {
       propsData: {
         ariaPageLabel: 'Page label',
         isCurrent: false,
-        page: 1
+        page: 1,
+        pageClass: 'c-sliding-pagination__page'
       }
     })
 
@@ -62,7 +70,8 @@ describe('SlidingPaginationDefaultPage.vue', () => {
       propsData: {
         ariaPageLabel: 'Page label',
         isCurrent: false,
-        page: 1
+        page: 1,
+        pageClass: 'c-sliding-pagination__page'
       }
     })
 
