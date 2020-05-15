@@ -61,6 +61,7 @@ the [Styles customization section](#styling) below
 | ariaPreviousPageLabel | String | `'Go to previous page'`                   | ARIA label for the previous page action                       |
 | ariaNextPageLabel     | String | `'Go to next page'`                       | ARIA label for the next page action                           |
 | ariaCurrentPageLabel  | String | `'Page %current of %total, current page'` | ARIA label for the current page                               |
+| classMap              | Object | [default class map](#class-map)           | CSS classes used by the components
 | current               | Number | -                                         | Integer representing the current page                         |
 | total                 | Number | -                                         | Integer representing the total number of pages                |
 | slidingEndingSize     | Number | `2`                                       | Number of always listed pages on the beginning and end        |
@@ -201,3 +202,12 @@ $sliding-pagination-foreground-secondary: $color-foreground-secondary;
   margin: 1.5em 0;
 }
 ```
+
+#### Class Map
+
+If you need to adjust the class names inside the component, you can pass an object to reconfigure the `classMap`
+used to determine any CSS class inside the component.
+
+Here are the defaults:
+
+<<< @/src/defaultClassMap.json

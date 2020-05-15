@@ -107,6 +107,7 @@
 
 <script>
 import SlidingPaginationDefaultPage from './SlidingPaginationDefaultPage.vue'
+import defaultClassMap from './defaultClassMap.json'
 
 export function range (start, end) {
   let r = []
@@ -166,14 +167,7 @@ export default {
       type: Object,
       required: false,
       default: () => {
-        return {
-          componentClass: 'c-sliding-pagination',
-          list: 'c-sliding-pagination__list',
-          element: 'c-sliding-pagination__list-element',
-          elementDisabled: 'c-sliding-pagination__list-element--disabled',
-          elementActive: 'c-sliding-pagination__list-element--active',
-          page: 'c-sliding-pagination__page'
-        }
+        return defaultClassMap
       }
     },
 
