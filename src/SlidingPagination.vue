@@ -110,14 +110,14 @@ import SlidingPaginationDefaultPage from './SlidingPaginationDefaultPage.vue'
 import defaultClassMap from './defaultClassMap.json'
 
 export function range (start, end) {
-  let r = []
+  const r = []
 
   if (typeof start !== 'number' || typeof end !== 'number') {
     return r
   }
 
   if (start > end) {
-    let temp = start
+    const temp = start
     start = end
     end = temp
   }
@@ -278,8 +278,8 @@ export default {
         return []
       }
 
-      let startOffset = this.lastBeginningPage + this.slidingWindowHalf
-      let endOffset = this.firstEndingPage - this.slidingWindowHalf
+      const startOffset = this.lastBeginningPage + this.slidingWindowHalf
+      const endOffset = this.firstEndingPage - this.slidingWindowHalf
 
       if (this.current <= startOffset) {
         return range(this.lastBeginningPage + 1, this.lastBeginningPage + this.slidingWindowSize)

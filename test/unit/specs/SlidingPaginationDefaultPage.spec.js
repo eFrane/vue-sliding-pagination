@@ -31,7 +31,7 @@ describe('SlidingPaginationDefaultPage.vue', () => {
   })
 
   it('renders a link', () => {
-    let wrapper = mount(SlidingPaginationDefaultPage, {
+    const wrapper = mount(SlidingPaginationDefaultPage, {
       propsData: {
         ariaPageLabel: 'Page label',
         isCurrent: false,
