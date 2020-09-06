@@ -247,7 +247,6 @@ describe('SlidingPagination.vue', () => {
   })
 })
 
-// TODO: Page swap test
 describe('SlidingPagination.vue-custom', () => {
   it('supports replacing the default page component', () => {
     const localVue = createLocalVue()
