@@ -232,7 +232,7 @@ describe('SlidingPagination.vue', () => {
   })
 
   it('emits a page-change on page activation', () => {
-    let eventWrapper = mount(SlidingPagination, {
+    const eventWrapper = mount(SlidingPagination, {
       propsData: {
         current: 1,
         total: 1
@@ -250,7 +250,7 @@ describe('SlidingPagination.vue', () => {
 // TODO: Page swap test
 describe('SlidingPagination.vue-custom', () => {
   it('supports replacing the default page component', () => {
-    let localVue = createLocalVue()
+    const localVue = createLocalVue()
 
     localVue.component('TestPageComponent', {
       name: 'TestPageComponent',
@@ -267,7 +267,7 @@ describe('SlidingPagination.vue-custom', () => {
       }
     })
 
-    let wrapper = mount(SlidingPagination, {
+    const wrapper = mount(SlidingPagination, {
       localVue,
       propsData: {
         current: 1,
