@@ -40,7 +40,6 @@ describe('SlidingPaginationDefaultPage.vue', () => {
       }
     })
 
-    expect(wrapper.isVueInstance()).toBeTruthy()
     expect(wrapper.find('a').attributes('aria-label')).toBe('Page label')
     expect(wrapper.find('a').classes('c-sliding-pagination__page')).toBeTruthy()
     expect(wrapper.text()).toBe('1')

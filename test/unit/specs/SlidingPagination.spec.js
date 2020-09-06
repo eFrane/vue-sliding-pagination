@@ -239,7 +239,7 @@ describe('SlidingPagination.vue', () => {
       }
     })
 
-    eventWrapper.find(SlidingPaginationDefaultPage).trigger('click')
+    eventWrapper.findComponent(SlidingPaginationDefaultPage).trigger('click')
 
     expect(eventWrapper.emitted()['page-change']).toBeTruthy()
     expect(eventWrapper.emitted()['page-change'].length).toBe(1)
