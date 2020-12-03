@@ -1,4 +1,9 @@
 
+1.1.1 / 2020-12-04
+==================
+
+  * Bumped dev dependencies to current versions
+
 1.1.0 / 2020-05-15
 ==================
 
