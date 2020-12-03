@@ -3,3 +3,8 @@ node_js:
   - "node"
   - "lts/*"
 cache: yarn
+
+script:
+  - yarn lint
+  - yarn test
+  - yarn build
