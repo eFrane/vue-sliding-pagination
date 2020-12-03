@@ -78,13 +78,15 @@ module.exports = [
       umdNamedDefine: true
     },
     plugins: [
-      new CopyWebpackPlugin([
-        {
-          from: './src/styles/*',
-          to: 'style/[name].[ext]',
-          toType: 'template'
-        }
-      ]),
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: './src/styles/*',
+            to: 'style/[name].[ext]',
+            toType: 'template'
+          }
+        ]
+      }),
     ]
   })
 ];
