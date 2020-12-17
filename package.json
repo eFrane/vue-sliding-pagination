@@ -30,7 +30,7 @@
     "vuepress:build": "vuepress build docs"
   },
   "dependencies": {
-    "vue": ">=2.4||<2.6.12"
+    "vue": "<2.6.12"
   },
   "devDependencies": {
     "@vue/test-utils": "^1.0.0-beta.26",
@@ -78,6 +78,7 @@
     "url-loader": "^4.0.0",
     "vue-jest": "^3.0.1",
     "vue-loader": "^15.0.0",
+    "vue-server-renderer": "2.6.11",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "2.6.11",
     "vuepress": "^1.7.1",
