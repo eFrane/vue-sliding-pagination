@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Examples | vue-sliding-pagination</title>
+    <meta name="generator" content="VuePress 1.7.1">
+    
+    <meta name="description" content="ARIA-friendly pagination component with a sliding window.">
+    
+    <link rel="preload" href="/assets/css/0.styles.a9d6432e.css" as="style"><link rel="preload" href="/assets/js/app.82f53774.js" as="script"><link rel="preload" href="/assets/js/2.6624b845.js" as="script"><link rel="preload" href="/assets/js/9.dfd8ec1e.js" as="script"><link rel="preload" href="/assets/js/3.81dab871.js" as="script"><link rel="prefetch" href="/assets/js/10.35d8a46e.js"><link rel="prefetch" href="/assets/js/4.7664ce83.js"><link rel="prefetch" href="/assets/js/5.90a09cba.js"><link rel="prefetch" href="/assets/js/6.e7c93678.js"><link rel="prefetch" href="/assets/js/7.22591706.js"><link rel="prefetch" href="/assets/js/8.ce874f81.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.a9d6432e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">vue-sliding-pagination</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/guide.html" class="nav-link">
+  Guide
+</a></div> <a href="https://github.com/eFrane/vue-sliding-pagination" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/guide.html" class="nav-link">
+  Guide
+</a></div> <a href="https://github.com/eFrane/vue-sliding-pagination" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/guide.html" class="sidebar-link">Guide</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/guide.html#usage" class="sidebar-link">Usage</a></li><li class="sidebar-sub-header"><a href="/guide.html#options" class="sidebar-link">Options</a></li><li class="sidebar-sub-header"><a href="/guide.html#customization" class="sidebar-link">Customization</a></li></ul></li><li><a href="/examples.html" aria-current="page" class="active sidebar-link">Examples</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/examples.html#very-basic-example" class="sidebar-link">Very Basic Example</a></li></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="examples"><a href="#examples" class="header-anchor">#</a> Examples</h1> <h2 id="very-basic-example"><a href="#very-basic-example" class="header-anchor">#</a> Very Basic Example</h2> <p>Easy as 1-2-3. 🎉</p> <nav aria-label="Pagination Navigation"><ul class="c-sliding-pagination__list"><li class="c-sliding-pagination__list-element c-sliding-pagination__list-element--disabled"><a href="#" aria-label="Go to previous page" disabled="disabled" class="c-sliding-pagination__page">«</a></li><li class="c-sliding-pagination__list-element c-sliding-pagination__list-element--active"><a href="#" aria-label="Page 1 of 10, current page" class="c-sliding-pagination__page">
+  1
+</a></li><li class="c-sliding-pagination__list-element"><a href="#" aria-label="Go to page 2 of 10" class="c-sliding-pagination__page">
+  2
+</a></li><!----><li class="c-sliding-pagination__list-element"><a href="#" aria-label="Go to page 3 of 10" class="c-sliding-pagination__page">
+  3
+</a></li><li class="c-sliding-pagination__list-element"><a href="#" aria-label="Go to page 4 of 10" class="c-sliding-pagination__page">
+  4
+</a></li><li class="c-sliding-pagination__list-element"><a href="#" aria-label="Go to page 5 of 10" class="c-sliding-pagination__page">
+  5
+</a></li><li aria-hidden="true" class="c-sliding-pagination__list-element c-sliding-pagination__list-element--disabled"><a href="#" disabled="disabled" class="c-sliding-pagination__page">…</a></li><li class="c-sliding-pagination__list-element"><a href="#" aria-label="Go to page 9 of 10" class="c-sliding-pagination__page">
+  9
+</a></li><li class="c-sliding-pagination__list-element"><a href="#" aria-label="Go to page 10 of 10" class="c-sliding-pagination__page">
+  10
+</a></li><li class="c-sliding-pagination__list-element c-sliding-pagination__list-element"><a href="#" aria-label="Go to next page" class="c-sliding-pagination__page">»</a></li></ul></nav> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>sliding-pagination</span>
+    <span class="token attr-name">:current</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>current<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name">:total</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>total<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name">@page-change</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>onPageChange<span class="token punctuation">&quot;</span></span>
+  <span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>sliding-pagination</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token keyword">import</span> SlidingPagination <span class="token keyword">from</span> <span class="token string">'@/../../../src/SlidingPagination.vue'</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token string">'SimpleExample'</span><span class="token punctuation">,</span>
+  components<span class="token operator">:</span> <span class="token punctuation">{</span>
+    SlidingPagination
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      current<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+      total<span class="token operator">:</span> <span class="token number">10</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  methods<span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token function">onPageChange</span> <span class="token punctuation">(</span><span class="token parameter">page</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>current <span class="token operator">=</span> page
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/eFrane/vue-sliding-pagination/edit/master/examples.md" target="_blank" rel="noopener noreferrer">Edit this page</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/guide.html" class="prev">
+        Guide
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.82f53774.js" defer></script><script src="/assets/js/2.6624b845.js" defer></script><script src="/assets/js/9.dfd8ec1e.js" defer></script><script src="/assets/js/3.81dab871.js" defer></script>
+  </body>
+</html>

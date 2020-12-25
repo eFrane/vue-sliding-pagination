@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Guide | vue-sliding-pagination</title>
+    <meta name="generator" content="VuePress 1.7.1">
+    
+    <meta name="description" content="ARIA-friendly pagination component with a sliding window.">
+    
+    <link rel="preload" href="/assets/css/0.styles.a9d6432e.css" as="style"><link rel="preload" href="/assets/js/app.82f53774.js" as="script"><link rel="preload" href="/assets/js/2.6624b845.js" as="script"><link rel="preload" href="/assets/js/10.35d8a46e.js" as="script"><link rel="prefetch" href="/assets/js/3.81dab871.js"><link rel="prefetch" href="/assets/js/4.7664ce83.js"><link rel="prefetch" href="/assets/js/5.90a09cba.js"><link rel="prefetch" href="/assets/js/6.e7c93678.js"><link rel="prefetch" href="/assets/js/7.22591706.js"><link rel="prefetch" href="/assets/js/8.ce874f81.js"><link rel="prefetch" href="/assets/js/9.dfd8ec1e.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.a9d6432e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">vue-sliding-pagination</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/guide.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  Guide
+</a></div> <a href="https://github.com/eFrane/vue-sliding-pagination" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/guide.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  Guide
+</a></div> <a href="https://github.com/eFrane/vue-sliding-pagination" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/guide.html" aria-current="page" class="active sidebar-link">Guide</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/guide.html#usage" class="sidebar-link">Usage</a></li><li class="sidebar-sub-header"><a href="/guide.html#options" class="sidebar-link">Options</a></li><li class="sidebar-sub-header"><a href="/guide.html#customization" class="sidebar-link">Customization</a></li></ul></li><li><a href="/examples.html" class="sidebar-link">Examples</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/examples.html#very-basic-example" class="sidebar-link">Very Basic Example</a></li></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="guide"><a href="#guide" class="header-anchor">#</a> Guide</h1> <h2 id="usage"><a href="#usage" class="header-anchor">#</a> Usage</h2> <p>Basic usage of the pagination component only requires the current page,
+the total number of pages and a handler which is called on page change.</p> <p>The pagination component <strong>does not handle page changes by itself</strong>, instead
+you are required to provide a page change handler which should contain
+all your page changing logic (e.g. a vuex store dispatch) and eventually
+change the current page to the passed one. In later releases, a v-model
+approach to <code>currentPage</code> may be offered, but was opted against for the time
+being.</p> <p>Thus, to get a paginator with default settings (please consult the options listing
+below for details), the following markup and script sections provide a starting
+point:</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>sliding-pagination</span>
+  <span class="token attr-name">:current</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>currentPage<span class="token punctuation">&quot;</span></span>
+  <span class="token attr-name">:total</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>totalPages<span class="token punctuation">&quot;</span></span>
+  <span class="token attr-name">@page-change</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>pageChangeHandler<span class="token punctuation">&quot;</span></span>
+<span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>sliding-pagination</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> SlidingPagination <span class="token keyword">from</span> <span class="token string">'vue-sliding-pagination'</span>
+
+<span class="token comment">// in component or vue instance</span>
+components<span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+  SlidingPagination
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+    currentPage<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    totalPages<span class="token operator">:</span> <span class="token number">10</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+methods<span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+  <span class="token function">pageChangeHandler</span><span class="token punctuation">(</span><span class="token parameter">selectedPage</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>currentPage <span class="token operator">=</span> selectedPage
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Additionally, the CSS for the component should be made available. Please refer to
+the <a href="#styling">Styles customization section</a> below</p> <h2 id="options"><a href="#options" class="header-anchor">#</a> Options</h2> <table><thead><tr><th>name</th> <th style="text-align:center;">type</th> <th>default</th> <th>description</th></tr></thead> <tbody><tr><td>ariaPaginationLabel</td> <td style="text-align:center;">String</td> <td><code>'Pagination navigation'</code></td> <td>ARIA label for the whole <code>&lt;nav&gt;</code> area</td></tr> <tr><td>ariaGotoPageLabel</td> <td style="text-align:center;">String</td> <td><code>'Go to page %page% of %total%'</code></td> <td>ARIA label for a page link that is not the current page</td></tr> <tr><td>ariaPreviousPageLabel</td> <td style="text-align:center;">String</td> <td><code>'Go to previous page'</code></td> <td>ARIA label for the previous page action</td></tr> <tr><td>ariaNextPageLabel</td> <td style="text-align:center;">String</td> <td><code>'Go to next page'</code></td> <td>ARIA label for the next page action</td></tr> <tr><td>ariaCurrentPageLabel</td> <td style="text-align:center;">String</td> <td><code>'Page %current of %total, current page'</code></td> <td>ARIA label for the current page</td></tr> <tr><td>classMap</td> <td style="text-align:center;">Object</td> <td><a href="#class-map">default class map</a></td> <td>CSS classes used by the components</td></tr> <tr><td>current</td> <td style="text-align:center;">Number</td> <td>-</td> <td>Integer representing the current page</td></tr> <tr><td>total</td> <td style="text-align:center;">Number</td> <td>-</td> <td>Integer representing the total number of pages</td></tr> <tr><td>slidingEndingSize</td> <td style="text-align:center;">Number</td> <td><code>2</code></td> <td>Number of always listed pages on the beginning and end</td></tr> <tr><td>slidingWindowSize</td> <td style="text-align:center;">Number</td> <td><code>3</code></td> <td>Number of pages in the sliding window</td></tr> <tr><td>nonSlidingSize</td> <td style="text-align:center;">Number</td> <td><code>9</code></td> <td>Number of pages before the paginator switches to sliding mode</td></tr> <tr><td>pageComponent</td> <td style="text-align:center;">String</td> <td><code>'sliding-pagination-default-page'</code></td> <td>Component name (must be registered) for the page elements</td></tr></tbody></table> <h2 id="customization"><a href="#customization" class="header-anchor">#</a> Customization</h2> <p>The component offers severals customization options.</p> <h3 id="aria-labels"><a href="#aria-labels" class="header-anchor">#</a> ARIA labels</h3> <p>All ARIA labels can be altered and localized.</p> <p>The labels <code>ariaGoToPageLabel</code> and <code>ariaCurrentPageLabel</code> support
+the following template variables:</p> <table><thead><tr><th>Variable</th> <th style="text-align:center;">Type</th> <th>Description</th></tr></thead> <tbody><tr><td><code>%total%</code></td> <td style="text-align:center;">Number</td> <td>The total number of pages</td></tr> <tr><td><code>%page%</code></td> <td style="text-align:center;">Number</td> <td>The page under the cursor</td></tr></tbody></table> <h3 id="intervals"><a href="#intervals" class="header-anchor">#</a> Intervals</h3> <p>The number of pages shown on the beginning and ending of the pager
+as well as the number of pages in the pagination window can be changed
+dynamically. The break-point from normal to sliding-window pagination
+can also be adjusted. <strong>Please bear in mind that none of these intervals
+and none of the calculations they are used in make any assertions on
+obviously impossible configurations!</strong></p> <p><em>What are obviously impossible configurations?</em></p> <p>Glad you're asking! For one, the rule of thumb should be
+<code>2 * slidingEndingSize + slidingWindowSize &lt;= total</code>.
+However, as there is a fallback coated as <code>nonSlidingSize</code> you can work around
+this &quot;limitation&quot; with some ingenouity on your part. Basically, don't do stupid things
+that disregards principles of natural numbers.</p> <h3 id="page-navigation"><a href="#page-navigation" class="header-anchor">#</a> Page navigation</h3> <p>The content of the previous and next page elements are customizable via the
+slots <code>previous-page</code> and <code>next-page</code>. By default, these only contain
+the &quot;pretend arrows&quot; aka « and ». The contents of these slots
+are <strong>only intended for visual use</strong>. Screenreader users are presented
+the <code>ariaPreviousPageLabel</code> and <code>ariaNextPageLabel</code> instead.</p> <h3 id="gaps"><a href="#gaps" class="header-anchor">#</a> Gaps</h3> <p>Depending on the current page, there may be a gap between the sliding window and the
+beginning and ending pages. The gap content defaults to … but can be
+customized <strong>for visual use</strong> under the same conditions as the page navigation with
+the slots <code>gap-left</code> and <code>gap-right</code>.</p> <h3 id="page-component"><a href="#page-component" class="header-anchor">#</a> Page component</h3> <p>Since actual pages are the most active element of the whole pagination deal,
+they have been implemented with the <code>&lt;component :is=&quot;paginationComponent&quot;&gt;</code> pattern.</p> <p>The <code>SlidingPaginationDefaultPage</code> component offers guidance into how a basic
+component representing page elements should look like. It's unit test can
+be used as a basis for unit testing custom page components.</p> <p>The page component receives the following props:</p> <table><thead><tr><th>name</th> <th style="text-align:center;">type</th> <th>description</th></tr></thead> <tbody><tr><td>ariaPageLabel</td> <td style="text-align:center;">String</td> <td>The computed ARIA page label</td></tr> <tr><td>isCurrent</td> <td style="text-align:center;">Boolean</td> <td>Is the page the current page</td></tr> <tr><td>page</td> <td style="text-align:center;">Number</td> <td>The page number to display</td></tr></tbody></table> <p>It is by no means required to implement all properties of the default page.
+A custom pagination component can usually just be implemented as render
+function, e.g.</p> <div class="language-js extra-class"><pre class="language-js"><code>Vue<span class="token punctuation">.</span><span class="token function">component</span><span class="token punctuation">(</span><span class="token string">'ExamplePageComponent'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  props<span class="token operator">:</span> <span class="token punctuation">{</span>
+    page<span class="token operator">:</span> <span class="token punctuation">{</span>
+      type<span class="token operator">:</span> Number<span class="token punctuation">,</span>
+      required<span class="token operator">:</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+  <span class="token function">render</span> <span class="token punctuation">(</span><span class="token parameter">h</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">h</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token keyword">class</span><span class="token operator">:</span> <span class="token string">'page-component'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>page<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>sliding-pagination</span>
+  <span class="token attr-name">...</span>
+  <span class="token attr-name">pagination-component</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>example-page-component<span class="token punctuation">&quot;</span></span>
+<span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>sliding-pagination</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p><em>Please keep in mind that the above example is absurdly simple for demonstration purposes
+and breaks the ARIA compatibility of the whole pagination component.</em></p> <h3 id="styling"><a href="#styling" class="header-anchor">#</a> Styling</h3> <p>The CSS classes used in the component are following the <a href="http://getbem.com/introduction/" target="_blank" rel="noopener noreferrer">BEM<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>-Methodology,
+regarding <strong>only</strong> the component itself as a block and going downward from there, thus the
+corresponding classes to interface elements are:</p> <table><thead><tr><th>Class</th> <th>Interface element</th></tr></thead> <tbody><tr><td>.c-sliding-pagination</td> <td>The whole component i.e. the <code>&lt;nav&gt;</code> container</td></tr> <tr><td>.c-sliding-pagination__list</td> <td>The <code>&lt;ul&gt;</code> containing all navigational and page elements</td></tr> <tr><td>.c-sliding-pagination__list-element</td> <td>Each <code>&lt;li&gt;</code> representing either a navigational or a page element</td></tr> <tr><td>.c-sliding-pagination__list-element--active</td> <td>The <code>&lt;li&gt;</code> representing the current page</td></tr> <tr><td>.c-sliding-pagination__list-element--disabled</td> <td>Disabled navigational elements</td></tr> <tr><td>.c-sliding-pagination__page</td> <td>The page element inside an <code>&lt;li&gt;</code> (typically an <code>&lt;a&gt;</code>)</td></tr></tbody></table> <p>To get the default styling, you may either add <code>dist/style/vue-sliding-pagination.css</code> as a
+CSS asset to your page:</p> <div class="language-css extra-class"><pre class="language-css"><code><span class="token atrule"><span class="token rule">@import</span> <span class="token string">&quot;~vue-sliding-pagination/dist/style/vue-sliding-pagination.css&quot;</span><span class="token punctuation">;</span></span>
+</code></pre></div><p>For ease of customization, the original SCSS styling files are available in the distribution package
+in the <code>dist/style</code> subdir, allowing quick and deep customization by utilizing the exposed variables
+and re-declaring classes:</p> <div class="language-scss extra-class"><pre class="language-scss"><code><span class="token property"><span class="token variable">$sliding-pagination-background-primary</span></span><span class="token punctuation">:</span> <span class="token variable">$background-primary</span><span class="token punctuation">;</span>
+<span class="token property"><span class="token variable">$sliding-pagination-background-secondary</span></span><span class="token punctuation">:</span> <span class="token variable">$background-secondary</span><span class="token punctuation">;</span>
+<span class="token property"><span class="token variable">$sliding-pagination-foreground-primary</span></span><span class="token punctuation">:</span> <span class="token variable">$color-foreground-primary</span><span class="token punctuation">;</span>
+<span class="token property"><span class="token variable">$sliding-pagination-foreground-secondary</span></span><span class="token punctuation">:</span> <span class="token variable">$color-foreground-secondary</span><span class="token punctuation">;</span>
+
+<span class="token keyword">@import</span> <span class="token string">&quot;~vue-sliding-pagination/dist/style/sliding-pagination&quot;</span><span class="token punctuation">;</span>
+
+<span class="token selector">.c-sliding-pagination </span><span class="token punctuation">{</span>
+  <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+  <span class="token property">margin</span><span class="token punctuation">:</span> 1.5em 0<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="class-map"><a href="#class-map" class="header-anchor">#</a> Class Map</h4> <p>If you need to adjust the class names inside the component, you can pass an object to reconfigure the <code>classMap</code>
+used to determine any CSS class inside the component.</p> <p>Here are the defaults:</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;componentClass&quot;</span><span class="token operator">:</span> <span class="token string">&quot;c-sliding-pagination&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;list&quot;</span><span class="token operator">:</span> <span class="token string">&quot;c-sliding-pagination__list&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;element&quot;</span><span class="token operator">:</span> <span class="token string">&quot;c-sliding-pagination__list-element&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;elementDisabled&quot;</span><span class="token operator">:</span> <span class="token string">&quot;c-sliding-pagination__list-element--disabled&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;elementActive&quot;</span><span class="token operator">:</span> <span class="token string">&quot;c-sliding-pagination__list-element--active&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;page&quot;</span><span class="token operator">:</span> <span class="token string">&quot;c-sliding-pagination__page&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/eFrane/vue-sliding-pagination/edit/master/guide.md" target="_blank" rel="noopener noreferrer">Edit this page</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <!----></footer> <div class="page-nav"><p class="inner"><!----> <span class="next"><a href="/examples.html">
+        Examples
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.82f53774.js" defer></script><script src="/assets/js/2.6624b845.js" defer></script><script src="/assets/js/10.35d8a46e.js" defer></script>
+  </body>
+</html>
