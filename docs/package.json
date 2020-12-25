@@ -3,6 +3,7 @@
   "version": "-",
   "license": "MIT",
   "dependencies": {
+    "sass": "^1.30.0",
     "sass-loader": "^10.1.0",
     "vuepress": "^1.7.1"
   }
