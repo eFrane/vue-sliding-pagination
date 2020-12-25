@@ -1,6 +1,7 @@
 {
   "name": "vue-sliding-pagination-documentation",
   "version": "-",
+  "private": true,
   "license": "MIT",
   "dependencies": {
     "sass": "^1.30.0",
