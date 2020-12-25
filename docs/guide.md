@@ -210,4 +210,4 @@ used to determine any CSS class inside the component.
 
 Here are the defaults:
 
-<<< @/src/defaultClassMap.json
+<<< @/../src/defaultClassMap.json

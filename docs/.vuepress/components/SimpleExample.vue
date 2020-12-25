@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import SlidingPagination from '@/../../src/SlidingPagination.vue'
+import SlidingPagination from '@/../../../src/SlidingPagination.vue'
 
 export default {
   name: 'SimpleExample',
