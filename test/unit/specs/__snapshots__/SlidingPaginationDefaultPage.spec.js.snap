@@ -6,9 +6,7 @@ exports[`SlidingPaginationDefaultPage.vue changes currentClass modifier class on
   class="c-sliding-pagination__page"
   href="#"
 >
-  
   1
-
 </a>
 `;
 
@@ -18,8 +16,6 @@ exports[`SlidingPaginationDefaultPage.vue changes currentClass modifier class on
   class="c-sliding-pagination__page"
   href="#"
 >
-  
   1
-
 </a>
 `;

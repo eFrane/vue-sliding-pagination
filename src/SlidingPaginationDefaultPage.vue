@@ -1,14 +1,3 @@
-<template>
-  <a
-    href="#"
-    @click.stop.prevent="goToPage(page)"
-    :aria-label="ariaPageLabel"
-    :class="pageClass"
-  >
-    {{ page }}
-  </a>
-</template>
-
 <script>
 export default {
   name: 'SlidingPaginationDefaultPage',
@@ -39,9 +28,27 @@ export default {
   },
 
   methods: {
-    goToPage () {
+    goToPage (e) {
+      e.preventDefault()
+      e.stopPropagation()
+
       this.$emit('page-click', this.page)
     }
+  },
+
+  render (h) {
+    return h('a', {
+      class: this.pageClass,
+      attrs: {
+        href: '#',
+        "aria-label": this.ariaPageLabel
+      },
+      on: {
+        click: this.goToPage
+      }
+    },
+    this.page
+    )
   }
 }
 </script>
