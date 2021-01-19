@@ -1,4 +1,6 @@
 <script>
+import { pageMarkup } from './pageMarkup'
+
 export default {
   name: 'SlidingPaginationDefaultPage',
 
@@ -37,17 +39,12 @@ export default {
   },
 
   render (h) {
-    return h('a', {
-      class: this.pageClass,
-      attrs: {
-        href: '#',
-        "aria-label": this.ariaPageLabel
-      },
-      on: {
-        click: this.goToPage
-      }
-    },
-    this.page
+    return pageMarkup(
+      h,
+      this.page,
+      this.ariaPageLabel,
+      this.pageClass,
+      this.goToPage
     )
   }
 }
