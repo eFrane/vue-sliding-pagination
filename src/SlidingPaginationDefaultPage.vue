@@ -41,7 +41,7 @@ export default {
       class: this.pageClass,
       attrs: {
         href: '#',
-        "aria-label": this.ariaPageLabel
+        'aria-label': this.ariaPageLabel
       },
       on: {
         click: this.goToPage
