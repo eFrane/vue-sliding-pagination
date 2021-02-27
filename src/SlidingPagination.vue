@@ -29,7 +29,7 @@
           :aria-page-label="pageLabel(page)"
           :page="page"
           :page-class="classMap.page"
-          @page-click="goToPage(page)"
+          @page-click="goToPage"
         />
       </li><!--
       --><li
@@ -56,7 +56,7 @@
           :aria-page-label="pageLabel(page)"
           :page="page"
           :page-class="classMap.page"
-          @page-click="goToPage(page)"
+          @page-click="goToPage"
         />
       </li><!--
       --><li
@@ -83,7 +83,7 @@
           :aria-page-label="pageLabel(page)"
           :page="page"
           :page-class="classMap.page"
-          @page-click="goToPage(page)"
+          @page-click="goToPage"
         />
       </li><!--
       --><li
