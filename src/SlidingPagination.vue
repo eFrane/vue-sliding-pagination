@@ -1,5 +1,5 @@
 <script>
-import SlidingPaginationDefaultPage from './SlidingPaginationDefaultPage.vue'
+import SlidingPaginationDefaultPage from './SlidingPaginationDefaultPage'
 import defaultClassMap from './defaultClassMap.json'
 
 export function range (start, end) {

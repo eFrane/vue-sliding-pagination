@@ -1,7 +1,6 @@
 import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
 
 import SlidingPagination from '@/SlidingPagination.vue'
-import SlidingPaginationDefaultPage from '@/SlidingPaginationDefaultPage.vue'
 
 describe('SlidingPagination.vue', () => {
   it('is named correctly', () => {

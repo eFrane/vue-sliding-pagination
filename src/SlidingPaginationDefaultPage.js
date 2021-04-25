@@ -1,4 +1,3 @@
-<script>
 export default {
   name: 'SlidingPaginationDefaultPage',
 
@@ -57,4 +56,3 @@ export default {
     )
   }
 }
-</script>
