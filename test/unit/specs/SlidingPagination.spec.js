@@ -71,7 +71,7 @@ describe('SlidingPagination.vue', () => {
   it('allows overriding the page display component', () => {
     expect(SlidingPagination.props).toHaveProperty('pageComponent.required')
     expect(SlidingPagination.props.pageComponent.required).toBe(false)
-    expect(SlidingPagination.props.pageComponent.type).toBe(String)
+    expect(SlidingPagination.props.pageComponent.type).toBe(Object)
   })
 })
 
@@ -239,7 +239,8 @@ describe('SlidingPagination.vue', () => {
       }
     })
 
-    eventWrapper.findComponent(SlidingPaginationDefaultPage).trigger('click')
+    const element = eventWrapper.find('.c-sliding-pagination__page--current')
+    element.trigger('click')
 
     expect(eventWrapper.emitted()['page-change']).toBeTruthy()
     expect(eventWrapper.emitted()['page-change'].length).toBe(1)
@@ -250,7 +251,7 @@ describe('SlidingPagination.vue', () => {
 describe('SlidingPagination.vue-custom', () => {
   const localVue = createLocalVue()
 
-  localVue.component('TestPageComponent', {
+  const TestPageComponent = {
     name: 'TestPageComponent',
 
     props: {
@@ -275,7 +276,9 @@ describe('SlidingPagination.vue-custom', () => {
         'Test Page ' + this.page
       )
     }
-  })
+  }
+
+  localVue.component('TestPageComponent', TestPageComponent)
 
   it('supports replacing the default page component', () => {
     const wrapper = mount(SlidingPagination, {
@@ -283,7 +286,7 @@ describe('SlidingPagination.vue-custom', () => {
       propsData: {
         current: 1,
         total: 3,
-        pageComponent: 'TestPageComponent'
+        pageComponent: TestPageComponent
       }
     })
 
@@ -296,7 +299,7 @@ describe('SlidingPagination.vue-custom', () => {
       propsData: {
         current: 1,
         total: 3,
-        pageComponent: 'TestPageComponent'
+        pageComponent: TestPageComponent
       }
     })
 

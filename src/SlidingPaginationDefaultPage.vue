@@ -22,8 +22,8 @@ export default {
   },
 
   computed: {
-    currentClass () {
-      return (this.isCurrent) ? 'c-sliding-pagination__page--current' : ''
+    pageClasses () {
+      return this.pageClass + (this.isCurrent) ? ' c-sliding-pagination__page--current' : ''
     }
   },
 
@@ -38,7 +38,7 @@ export default {
 
   render (h) {
     return h('a', {
-      class: this.pageClass,
+      class: this.pageClasses,
       attrs: {
         href: '#',
         'aria-label': this.ariaPageLabel

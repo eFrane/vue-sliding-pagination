@@ -94,8 +94,8 @@ export default {
 
     pageComponent: {
       required: false,
-      type: String,
-      default: 'sliding-pagination-default-page'
+      type: Object,
+      default: () => SlidingPaginationDefaultPage
     }
   },
 
@@ -270,51 +270,49 @@ export default {
      */
     pageLabel (page) {
       return (this.isCurrentPage(page)) ? this.currentPageLabel(page) : this.goToPageLabel(page)
-    }
-  },
+    },
 
-  render (h) {
-    let listElements = []
-
-    const slotOrDefault = (slot, _default) => {
+    slotOrDefault (slot, _default) {
       if (this.$slots[slot]) {
-        return this.$slots[slot](_default)
+        return this.$slots[slot]
       }
 
       return _default
-    }
+    },
 
-    const navigationElement = (position, offset, ariaLabel, label) => {
-      return h('li', {
-        class: [
-          this.classMap.element,
-          (this.current === position) ? this.classMap.elementDisabled : ''
-        ],
-        key: position
-      },
-      h('a',
-        {
-          class: this.classMap.page,
-          attrs: {
-            href: '#',
-            'aria-label': ariaLabel,
-            disabled: this.current === 1
-          },
-          on: {
-            click: e => {
-              e.preventDefault()
-              e.stopPropagation()
-
-              this.goToPage(this.current + offset)
-            }
-          }
+    navigationElement (h, position, offset, ariaLabel, label) {
+      return h(
+        'li', {
+          class: [
+            this.classMap.element,
+            (this.current === position) ? this.classMap.elementDisabled : ''
+          ],
+          key: position
         },
-        label
-      )
-      )
-    }
+        [h(
+          'a',
+          {
+            class: this.classMap.page,
+            attrs: {
+              href: '#',
+              'aria-label': ariaLabel,
+              disabled: this.current === 1
+            },
+            on: {
+              click: e => {
+                e.preventDefault()
+                e.stopPropagation()
 
-    const pageList = page => {
+                this.goToPage(this.current + offset)
+              }
+            }
+          },
+          label
+        )]
+      )
+    },
+
+    pageListPage (h, page) {
       return h(
         'li',
         {
@@ -325,7 +323,7 @@ export default {
               : ''
           ]
         },
-        h('div', {
+        [h(this.pageComponent, {
           props: {
             isCurrent: this.isCurrentPage(page),
             ariaPageLabel: this.pageLabel(page),
@@ -333,13 +331,13 @@ export default {
             pageClass: this.classMap.page
           },
           on: {
-            pageClick: this.goToPage
+            'page-click': this.goToPage
           }
-        })
+        })]
       )
-    }
+    },
 
-    const gap = (label) => {
+    gap (h, label) {
       return h('li',
         {
           class: [
@@ -350,7 +348,7 @@ export default {
             'aria-hidden': true
           }
         },
-        h('a',
+        [h('a',
           {
             class: this.classMap.page,
             attrs: {
@@ -359,42 +357,49 @@ export default {
             }
           },
           label
-        )
+        )]
       )
     }
+
+  },
+
+  render (h) {
+    let listElements = []
 
     if (this.showPreviousPageAction) {
       listElements.push(
-        navigationElement(
+        this.navigationElement(
+          h,
           1,
           -1,
           this.ariaPreviousPageLabel,
-          slotOrDefault('previous-page', '&laquo;')
+          this.slotOrDefault('previous-page', '&laquo;')
         )
       )
     }
 
-    listElements = listElements.concat(this.beginningPages.map(pageList))
+    listElements = listElements.concat(this.beginningPages.map((page) => { return this.pageListPage(h, page) }))
 
     if (this.hasBeginningGap) {
-      listElements.push(gap(slotOrDefault('gap-left', '&hellip;')))
+      listElements.push(this.gap(h, this.slotOrDefault('gap-left', '&hellip;')))
     }
 
-    listElements = listElements.concat(this.slidingWindowPages.map(pageList))
+    listElements = listElements.concat(this.slidingWindowPages.map((page) => { return this.pageListPage(h, page) }))
 
     if (this.hasEndingGap) {
-      listElements.push(gap(slotOrDefault('gap-right', '&hellip;')))
+      listElements.push(this.gap(h, this.slotOrDefault('gap-right', '&hellip;')))
     }
 
-    listElements = listElements.concat(this.endingPages.map(pageList))
+    listElements = listElements.concat(this.endingPages.map((page) => { return this.pageListPage(h, page) }))
 
     if (this.showNextPageAction) {
       listElements.push(
-        navigationElement(
+        this.navigationElement(
+          h,
           this.total,
           1,
           this.ariaNextPageLabel,
-          slotOrDefault('next-page', '&raquo;')
+          this.slotOrDefault('next-page', '&raquo;')
         )
       )
     }
@@ -406,13 +411,13 @@ export default {
           'aria-label': this.ariaPaginationLabel
         }
       },
-      h(
+      [h(
         'ul',
         {
           class: this.classMap.list
         },
         listElements
-      )
+      )]
     )
   }
 }
