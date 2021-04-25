@@ -9,7 +9,7 @@ export default {
     },
     isCurrent: {
       type: Boolean,
-      required: true
+      required: true,
     },
     page: {
       type: Number,
@@ -23,7 +23,13 @@ export default {
 
   computed: {
     pageClasses () {
-      return this.pageClass + (this.isCurrent) ? ' c-sliding-pagination__page--current' : ''
+      let res = this.pageClass
+
+      if (this.isCurrent) {
+        res += ' c-sliding-pagination__page--current'
+      }
+
+      return res
     }
   },
 

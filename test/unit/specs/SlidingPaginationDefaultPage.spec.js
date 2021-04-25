@@ -55,12 +55,13 @@ describe('SlidingPaginationDefaultPage.vue', () => {
       }
     })
 
-    expect(wrapper.vm.currentClasses).toBe('c-sliding-pagination__page')
+    expect(wrapper.vm.isCurrent).toBeFalsy()
+    expect(wrapper.vm.pageClasses).toBe('c-sliding-pagination__page')
     expect(wrapper.element).toMatchSnapshot()
 
     wrapper.setProps({ isCurrent: true })
 
-    expect(wrapper.vm.currentClasses).toBe('c-sliding-pagination__page c-sliding-pagination__page--current')
+    expect(wrapper.vm.pageClasses).toBe('c-sliding-pagination__page c-sliding-pagination__page--current')
     expect(wrapper.element).toMatchSnapshot()
   })
 
