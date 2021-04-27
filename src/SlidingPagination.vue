@@ -1,112 +1,5 @@
-<template>
-  <nav
-    :class="classMap.component"
-    :aria-label="ariaPaginationLabel"
-  >
-    <ul :class="classMap.list">
-      <li
-        v-if="showPreviousPageAction"
-        :class="[classMap.element, (current == 1) ? classMap.elementDisabled : '']"
-      >
-        <a
-          href="#"
-          :aria-label="ariaPreviousPageLabel"
-          :disabled="current == 1"
-          @click.prevent.stop="goToPage(current - 1)"
-          :class="classMap.page"
-        >
-          <slot name="previous-page">&laquo;</slot>
-        </a>
-      </li><!--
-      --><li
-        v-for="page in beginningPages"
-        :key="page"
-        :class="[classMap.element, isCurrentPage(page) ? classMap.elementActive : '']"
-      >
-        <component
-          :is="pageComponent"
-          :is-current="isCurrentPage(page)"
-          :aria-page-label="pageLabel(page)"
-          :page="page"
-          :page-class="classMap.page"
-          @page-click="goToPage"
-        />
-      </li><!--
-      --><li
-        v-if="hasBeginningGap"
-        :class="[classMap.element, classMap.elementDisabled]"
-        aria-hidden="true"
-      >
-        <a
-          href="#"
-          :class="classMap.page"
-          disabled
-        >
-          <slot name="gap-left">&hellip;</slot>
-        </a>
-      </li><!--
-      --><li
-        v-for="page in slidingWindowPages"
-        :key="page"
-        :class="[classMap.element, isCurrentPage(page) ? classMap.elementActive : '']"
-      >
-        <component
-          :is="pageComponent"
-          :is-current="isCurrentPage(page)"
-          :aria-page-label="pageLabel(page)"
-          :page="page"
-          :page-class="classMap.page"
-          @page-click="goToPage"
-        />
-      </li><!--
-      --><li
-        v-if="hasEndingGap"
-        :class="[classMap.element, classMap.elementDisabled]"
-        aria-hidden="true"
-      >
-        <a
-          href="#"
-          :class="classMap.page"
-          disabled
-        >
-          <slot name="gap-right">&hellip;</slot>
-        </a>
-      </li><!--
-      --><li
-        v-for="page in endingPages"
-        :key="page"
-        :class="[classMap.element, isCurrentPage(page) ? classMap.elementActive : '']"
-      >
-        <component
-          :is="pageComponent"
-          :is-current="isCurrentPage(page)"
-          :aria-page-label="pageLabel(page)"
-          :page="page"
-          :page-class="classMap.page"
-          @page-click="goToPage"
-        />
-      </li><!--
-      --><li
-        class="c-sliding-pagination__list-element"
-        :class="[classMap.element, (current == total) ? classMap.elementDisabled : '']"
-        v-if="showNextPageAction"
-      >
-        <a
-          href="#"
-          :aria-label="ariaNextPageLabel"
-          @click.prevent.stop="goToPage(current + 1)"
-          :disabled="current == total"
-          :class="classMap.page"
-        >
-          <slot name="next-page">&raquo;</slot>
-        </a>
-      </li>
-    </ul>
-  </nav>
-</template>
-
 <script>
-import SlidingPaginationDefaultPage from './SlidingPaginationDefaultPage.vue'
+import SlidingPaginationDefaultPage from './SlidingPaginationDefaultPage'
 import defaultClassMap from './defaultClassMap.json'
 
 export function range (start, end) {
@@ -201,8 +94,8 @@ export default {
 
     pageComponent: {
       required: false,
-      type: String,
-      default: 'sliding-pagination-default-page'
+      type: Object,
+      default: () => SlidingPaginationDefaultPage
     }
   },
 
@@ -377,7 +270,155 @@ export default {
      */
     pageLabel (page) {
       return (this.isCurrentPage(page)) ? this.currentPageLabel(page) : this.goToPageLabel(page)
+    },
+
+    slotOrDefault (slot, _default) {
+      if (this.$slots[slot]) {
+        return this.$slots[slot]
+      }
+
+      return _default
+    },
+
+    navigationElement (h, position, offset, ariaLabel, label) {
+      return h(
+        'li', {
+          class: [
+            this.classMap.element,
+            (this.current === position) ? this.classMap.elementDisabled : ''
+          ],
+          key: position
+        },
+        [h(
+          'a',
+          {
+            class: this.classMap.page,
+            attrs: {
+              href: '#',
+              'aria-label': ariaLabel,
+              disabled: this.current === 1
+            },
+            on: {
+              click: e => {
+                e.preventDefault()
+                e.stopPropagation()
+
+                this.goToPage(this.current + offset)
+              }
+            }
+          },
+          label
+        )]
+      )
+    },
+
+    pageListPage (h, page) {
+      return h(
+        'li',
+        {
+          class: [
+            this.classMap.element,
+            this.isCurrentPage(page)
+              ? this.classMap.elementActive
+              : ''
+          ]
+        },
+        [h(this.pageComponent, {
+          props: {
+            isCurrent: this.isCurrentPage(page),
+            ariaPageLabel: this.pageLabel(page),
+            page: page,
+            pageClass: this.classMap.page
+          },
+          on: {
+            'page-click': this.goToPage
+          }
+        })]
+      )
+    },
+
+    gap (h, label) {
+      return h('li',
+        {
+          class: [
+            this.classMap.element,
+            this.classMap.elementDisabled
+          ],
+          attrs: {
+            'aria-hidden': true
+          }
+        },
+        [h('a',
+          {
+            class: this.classMap.page,
+            attrs: {
+              href: '#',
+              disabled: true
+            }
+          },
+          label
+        )]
+      )
     }
+
+  },
+
+  render (h) {
+    let listElements = []
+
+    if (this.showPreviousPageAction) {
+      listElements.push(
+        this.navigationElement(
+          h,
+          1,
+          -1,
+          this.ariaPreviousPageLabel,
+          this.slotOrDefault('previous-page', '&laquo;')
+        )
+      )
+    }
+
+    listElements = listElements.concat(this.beginningPages.map((page) => { return this.pageListPage(h, page) }))
+
+    if (this.hasBeginningGap) {
+      listElements.push(this.gap(h, this.slotOrDefault('gap-left', '&hellip;')))
+    }
+
+    listElements = listElements.concat(this.slidingWindowPages.map((page) => { return this.pageListPage(h, page) }))
+
+    if (this.hasEndingGap) {
+      listElements.push(this.gap(h, this.slotOrDefault('gap-right', '&hellip;')))
+    }
+
+    listElements = listElements.concat(this.endingPages.map((page) => { return this.pageListPage(h, page) }))
+
+    if (this.showNextPageAction) {
+      listElements.push(
+        this.navigationElement(
+          h,
+          this.total,
+          1,
+          this.ariaNextPageLabel,
+          this.slotOrDefault('next-page', '&raquo;')
+        )
+      )
+    }
+
+    return h(
+      'nav', {
+        class: this.classMap.component,
+        attrs: {
+          'aria-label': this.ariaPaginationLabel
+        }
+      },
+      [h(
+        'ul',
+        {
+          class: this.classMap.list
+        },
+        listElements
+      )]
+    )
   }
 }
 </script>

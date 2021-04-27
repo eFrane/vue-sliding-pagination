@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import SlidingPaginationDefaultPage from '@/SlidingPaginationDefaultPage.vue'
+import SlidingPaginationDefaultPage from '@/SlidingPaginationDefaultPage'
 
 describe('SlidingPaginationDefaultPage.vue', () => {
   it('is named correctly', () => {
@@ -55,12 +55,13 @@ describe('SlidingPaginationDefaultPage.vue', () => {
       }
     })
 
-    expect(wrapper.vm.currentClass).toBe('')
+    expect(wrapper.vm.isCurrent).toBeFalsy()
+    expect(wrapper.vm.pageClasses).toBe('c-sliding-pagination__page')
     expect(wrapper.element).toMatchSnapshot()
 
     wrapper.setProps({ isCurrent: true })
 
-    expect(wrapper.vm.currentClass).toBe('c-sliding-pagination__page--current')
+    expect(wrapper.vm.pageClasses).toBe('c-sliding-pagination__page c-sliding-pagination__page--current')
     expect(wrapper.element).toMatchSnapshot()
   })
 

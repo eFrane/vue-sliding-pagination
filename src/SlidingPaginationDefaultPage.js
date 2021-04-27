@@ -1,4 +1,3 @@
-<script>
 export default {
   name: 'SlidingPaginationDefaultPage',
 
@@ -22,8 +21,14 @@ export default {
   },
 
   computed: {
-    currentClass () {
-      return (this.isCurrent) ? 'c-sliding-pagination__page--current' : ''
+    pageClasses () {
+      let res = this.pageClass
+
+      if (this.isCurrent) {
+        res += ' c-sliding-pagination__page--current'
+      }
+
+      return res
     }
   },
 
@@ -38,7 +43,7 @@ export default {
 
   render (h) {
     return h('a', {
-      class: this.pageClass,
+      class: this.pageClasses,
       attrs: {
         href: '#',
         'aria-label': this.ariaPageLabel
@@ -51,4 +56,3 @@ export default {
     )
   }
 }
-</script>
