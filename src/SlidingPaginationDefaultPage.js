@@ -8,7 +8,7 @@ export default {
     },
     isCurrent: {
       type: Boolean,
-      required: true,
+      required: true
     },
     page: {
       type: Number,
