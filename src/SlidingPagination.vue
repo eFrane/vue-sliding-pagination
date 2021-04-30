@@ -365,7 +365,7 @@ export default {
           1,
           -1,
           this.ariaPreviousPageLabel,
-          this.slotOrDefault('previousPage', '&laquo;')
+          this.slotOrDefault('previousPage', '«')
         )
       )
     }
@@ -373,13 +373,13 @@ export default {
     listElements = listElements.concat(this.beginningPages.map((page) => { return this.pageListPage(h, page) }))
 
     if (this.hasBeginningGap) {
-      listElements.push(this.gap(h, this.slotOrDefault('gapLeft', '&hellip;')))
+      listElements.push(this.gap(h, this.slotOrDefault('gapLeft', '…')))
     }
 
     listElements = listElements.concat(this.slidingWindowPages.map((page) => { return this.pageListPage(h, page) }))
 
     if (this.hasEndingGap) {
-      listElements.push(this.gap(h, this.slotOrDefault('gapRight', '&hellip;')))
+      listElements.push(this.gap(h, this.slotOrDefault('gapRight', '…')))
     }
 
     listElements = listElements.concat(this.endingPages.map((page) => { return this.pageListPage(h, page) }))
@@ -391,7 +391,7 @@ export default {
           this.total,
           1,
           this.ariaNextPageLabel,
-          this.slotOrDefault('nextPage', '&raquo;')
+          this.slotOrDefault('nextPage', '»')
         )
       )
     }
