@@ -1,5 +1,3 @@
-import { mount, shallowMount } from '@vue/test-utils'
-
 import SlidingPagination from '@/SlidingPagination.vue'
 
 it('is named correctly', () => {
