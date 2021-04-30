@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SlidingPaginationDefaultPage.vue changes currentClass modifier class on change of isCurrent 1`] = `
+exports[`changes currentClass modifier class on change of isCurrent 1`] = `
 <a
   aria-label="Page label"
   class="c-sliding-pagination__page"
@@ -10,7 +10,7 @@ exports[`SlidingPaginationDefaultPage.vue changes currentClass modifier class on
 </a>
 `;
 
-exports[`SlidingPaginationDefaultPage.vue changes currentClass modifier class on change of isCurrent 2`] = `
+exports[`changes currentClass modifier class on change of isCurrent 2`] = `
 <a
   aria-label="Page label"
   class="c-sliding-pagination__page"
