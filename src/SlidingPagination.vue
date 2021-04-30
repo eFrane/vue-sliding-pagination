@@ -297,14 +297,6 @@ export default {
               href: '#',
               'aria-label': ariaLabel,
               disabled: this.current === 1
-            },
-            on: {
-              click: e => {
-                e.preventDefault()
-                e.stopPropagation()
-
-                this.goToPage(this.current + offset)
-              }
             }
           },
           label
