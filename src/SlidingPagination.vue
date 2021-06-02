@@ -255,6 +255,26 @@ export default {
     },
 
     /**
+     * Advance a page.
+     *
+     * It is not necessary to check for any boundaries as the navigation element is disabled
+     * if advancing is impossible.
+     */
+    goToNextPage () {
+      this.goToPage(this.current + 1)
+    },
+
+    /**
+     * Go back a page.
+     *
+     * It is not necessary to check for any boundaries as the navigation element is disabled
+     * if moving backwards is impossible.
+     */
+    goToPreviousPage () {
+      this.goToPage(this.current - 1)
+    },
+
+    /**
      * @description ARIA label for page selection
      * @param {number} page
      * @returns {string}
@@ -297,6 +317,9 @@ export default {
               href: '#',
               'aria-label': ariaLabel,
               disabled: this.current === 1
+            },
+            on: {
+              click: (position === this.total) ? this.goToNextPage : this.goToPreviousPage
             }
           },
           label

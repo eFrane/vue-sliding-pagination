@@ -1,3 +1,14 @@
+## next
+
+**Fixes**
+
+- Page navigation via the next page and previous
+  page elements works again (#375)
+
+**Other**
+
+- Dependency updates
+
 1.3.0 / 2021-04-30
 ==================
 
