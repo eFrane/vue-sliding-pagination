@@ -52,7 +52,7 @@ describe('SlidingPagination.vue-custom', () => {
       localVue,
       propsData: {
         current: 1,
-        total: 3,
+        total: 44,
         pageComponent: TestPageComponent
       }
     })
