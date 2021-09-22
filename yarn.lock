@@ -8606,9 +8606,9 @@ vue-jest@^3.0.1:
     vue-template-es2015-compiler "^1.6.0"
 
 vue-loader@^16.5.0:
-  version "16.5.0"
-  resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-16.5.0.tgz#09c4e0712466899e34b99a686524f19165fb2892"
-  integrity sha512-WXh+7AgFxGTgb5QAkQtFeUcHNIEq3PGVQ8WskY5ZiFbWBkOwcCPRs4w/2tVyTbh2q6TVRlO3xfvIukUtjsu62A==
+  version "16.7.0"
+  resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-16.7.0.tgz#ee161b2f6c27b0b459264c3c23d34068b471d574"
+  integrity sha512-43I0grWtwSCE8fiH/hAwFK+6sNlmvDuHhXScYH8HVSVAMS81IM66tgUOcxbPCeqhhz/1BE51YPxX59eZKGallQ==
   dependencies:
     chalk "^4.1.0"
     hash-sum "^2.0.0"
