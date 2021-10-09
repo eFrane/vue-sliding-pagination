@@ -1,6 +1,6 @@
 ## 1.3.2 / 2021-10-09
 
-** Other**
+**Other**
 
 - Dependency updates
 
