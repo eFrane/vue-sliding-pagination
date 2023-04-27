@@ -8,7 +8,7 @@
     
     <meta name="description" content="ARIA-friendly pagination component with a sliding window.">
     
-    <link rel="preload" href="/assets/css/0.styles.4f47fd85.css" as="style"><link rel="preload" href="/assets/js/app.f2803bd7.js" as="script"><link rel="preload" href="/assets/js/2.f5287a55.js" as="script"><link rel="preload" href="/assets/js/11.50bfef8c.js" as="script"><link rel="preload" href="/assets/js/3.391d442d.js" as="script"><link rel="preload" href="/assets/js/4.ae9edd3e.js" as="script"><link rel="preload" href="/assets/js/5.6144b9ee.js" as="script"><link rel="prefetch" href="/assets/js/10.0010e426.js"><link rel="prefetch" href="/assets/js/12.ca28b8bc.js"><link rel="prefetch" href="/assets/js/6.946c4f98.js"><link rel="prefetch" href="/assets/js/7.ff839823.js"><link rel="prefetch" href="/assets/js/8.d78ed8e6.js"><link rel="prefetch" href="/assets/js/9.5df19bae.js">
+    <link rel="preload" href="/assets/css/0.styles.4f47fd85.css" as="style"><link rel="preload" href="/assets/js/app.a5594fff.js" as="script"><link rel="preload" href="/assets/js/2.f5287a55.js" as="script"><link rel="preload" href="/assets/js/11.81bfb0f1.js" as="script"><link rel="preload" href="/assets/js/3.391d442d.js" as="script"><link rel="preload" href="/assets/js/4.ae9edd3e.js" as="script"><link rel="preload" href="/assets/js/5.6144b9ee.js" as="script"><link rel="prefetch" href="/assets/js/10.5835264f.js"><link rel="prefetch" href="/assets/js/12.81014899.js"><link rel="prefetch" href="/assets/js/6.946c4f98.js"><link rel="prefetch" href="/assets/js/7.ff839823.js"><link rel="prefetch" href="/assets/js/8.d78ed8e6.js"><link rel="prefetch" href="/assets/js/9.5df19bae.js">
     <link rel="stylesheet" href="/assets/css/0.styles.4f47fd85.css">
   </head>
   <body>
@@ -33,17 +33,17 @@
 <span class="token keyword">import</span> SlidingPagination <span class="token keyword">from</span> <span class="token string">'@/../../../src/SlidingPagination.vue'</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
-  name<span class="token operator">:</span> <span class="token string">'SimpleExample'</span><span class="token punctuation">,</span>
-  components<span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'SimpleExample'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">components</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     SlidingPagination
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token punctuation">{</span>
-      current<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
-      total<span class="token operator">:</span> <span class="token number">10</span>
+      <span class="token literal-property property">current</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">total</span><span class="token operator">:</span> <span class="token number">10</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  methods<span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token function">onPageChange</span> <span class="token punctuation">(</span><span class="token parameter">page</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
       <span class="token keyword">this</span><span class="token punctuation">.</span>current <span class="token operator">=</span> page
     <span class="token punctuation">}</span>
@@ -80,31 +80,31 @@
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
-  name<span class="token operator">:</span> <span class="token string">'TextInputCustomPage'</span><span class="token punctuation">,</span>
-  props<span class="token operator">:</span> <span class="token punctuation">{</span>
-    ariaPageLabel<span class="token operator">:</span> <span class="token punctuation">{</span>
-      type<span class="token operator">:</span> String<span class="token punctuation">,</span>
-      required<span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'TextInputCustomPage'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">props</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">ariaPageLabel</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">type</span><span class="token operator">:</span> String<span class="token punctuation">,</span>
+      <span class="token literal-property property">required</span><span class="token operator">:</span> <span class="token boolean">true</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    isCurrent<span class="token operator">:</span> <span class="token punctuation">{</span>
-      type<span class="token operator">:</span> Boolean<span class="token punctuation">,</span>
-      required<span class="token operator">:</span> <span class="token boolean">true</span>
+    <span class="token literal-property property">isCurrent</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">type</span><span class="token operator">:</span> Boolean<span class="token punctuation">,</span>
+      <span class="token literal-property property">required</span><span class="token operator">:</span> <span class="token boolean">true</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    page<span class="token operator">:</span> <span class="token punctuation">{</span>
-      type<span class="token operator">:</span> Number<span class="token punctuation">,</span>
-      required<span class="token operator">:</span> <span class="token boolean">true</span>
+    <span class="token literal-property property">page</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">type</span><span class="token operator">:</span> Number<span class="token punctuation">,</span>
+      <span class="token literal-property property">required</span><span class="token operator">:</span> <span class="token boolean">true</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    pageClass<span class="token operator">:</span> <span class="token punctuation">{</span>
-      type<span class="token operator">:</span> String<span class="token punctuation">,</span>
-      required<span class="token operator">:</span> <span class="token boolean">true</span>
+    <span class="token literal-property property">pageClass</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">type</span><span class="token operator">:</span> String<span class="token punctuation">,</span>
+      <span class="token literal-property property">required</span><span class="token operator">:</span> <span class="token boolean">true</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token punctuation">{</span>
-      pageInput<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>page
+      <span class="token literal-property property">pageInput</span><span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>page
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  methods<span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token function">goToPage</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
       e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
       e<span class="token punctuation">.</span><span class="token function">stopPropagation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -130,17 +130,17 @@
 <span class="token keyword">import</span> SlidingPagination <span class="token keyword">from</span> <span class="token string">'@/../../../src/SlidingPagination.vue'</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
-  name<span class="token operator">:</span> <span class="token string">'WithCustomPage'</span><span class="token punctuation">,</span>
-  components<span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'WithCustomPage'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">components</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     SlidingPagination
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token punctuation">{</span>
-      current<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
-      total<span class="token operator">:</span> <span class="token number">20</span>
+      <span class="token literal-property property">current</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">total</span><span class="token operator">:</span> <span class="token number">20</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  methods<span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token function">onPageChange</span> <span class="token punctuation">(</span><span class="token parameter">page</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
       <span class="token keyword">this</span><span class="token punctuation">.</span>current <span class="token operator">=</span> page
     <span class="token punctuation">}</span>
@@ -152,6 +152,6 @@
       <a href="/guide.html" class="prev">
         Guide
       </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/assets/js/app.f2803bd7.js" defer></script><script src="/assets/js/2.f5287a55.js" defer></script><script src="/assets/js/11.50bfef8c.js" defer></script><script src="/assets/js/3.391d442d.js" defer></script><script src="/assets/js/4.ae9edd3e.js" defer></script><script src="/assets/js/5.6144b9ee.js" defer></script>
+    <script src="/assets/js/app.a5594fff.js" defer></script><script src="/assets/js/2.f5287a55.js" defer></script><script src="/assets/js/11.81bfb0f1.js" defer></script><script src="/assets/js/3.391d442d.js" defer></script><script src="/assets/js/4.ae9edd3e.js" defer></script><script src="/assets/js/5.6144b9ee.js" defer></script>
   </body>
 </html>

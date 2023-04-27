@@ -8,7 +8,7 @@
     
     <meta name="description" content="ARIA-friendly pagination component with a sliding window.">
     
-    <link rel="preload" href="/assets/css/0.styles.4f47fd85.css" as="style"><link rel="preload" href="/assets/js/app.f2803bd7.js" as="script"><link rel="preload" href="/assets/js/2.f5287a55.js" as="script"><link rel="preload" href="/assets/js/12.ca28b8bc.js" as="script"><link rel="prefetch" href="/assets/js/10.0010e426.js"><link rel="prefetch" href="/assets/js/11.50bfef8c.js"><link rel="prefetch" href="/assets/js/3.391d442d.js"><link rel="prefetch" href="/assets/js/4.ae9edd3e.js"><link rel="prefetch" href="/assets/js/5.6144b9ee.js"><link rel="prefetch" href="/assets/js/6.946c4f98.js"><link rel="prefetch" href="/assets/js/7.ff839823.js"><link rel="prefetch" href="/assets/js/8.d78ed8e6.js"><link rel="prefetch" href="/assets/js/9.5df19bae.js">
+    <link rel="preload" href="/assets/css/0.styles.4f47fd85.css" as="style"><link rel="preload" href="/assets/js/app.a5594fff.js" as="script"><link rel="preload" href="/assets/js/2.f5287a55.js" as="script"><link rel="preload" href="/assets/js/12.81014899.js" as="script"><link rel="prefetch" href="/assets/js/10.5835264f.js"><link rel="prefetch" href="/assets/js/11.81bfb0f1.js"><link rel="prefetch" href="/assets/js/3.391d442d.js"><link rel="prefetch" href="/assets/js/4.ae9edd3e.js"><link rel="prefetch" href="/assets/js/5.6144b9ee.js"><link rel="prefetch" href="/assets/js/6.946c4f98.js"><link rel="prefetch" href="/assets/js/7.ff839823.js"><link rel="prefetch" href="/assets/js/8.d78ed8e6.js"><link rel="prefetch" href="/assets/js/9.5df19bae.js">
     <link rel="stylesheet" href="/assets/css/0.styles.4f47fd85.css">
   </head>
   <body>
@@ -36,18 +36,18 @@ point:</p> <div class="language-html extra-class"><pre class="language-html"><co
 </code></pre></div><div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> SlidingPagination <span class="token keyword">from</span> <span class="token string">'vue-sliding-pagination'</span>
 
 <span class="token comment">// in component or vue instance</span>
-components<span class="token operator">:</span> <span class="token punctuation">{</span>
+<span class="token literal-property property">components</span><span class="token operator">:</span> <span class="token punctuation">{</span>
   <span class="token comment">// ...</span>
   SlidingPagination
 <span class="token punctuation">}</span><span class="token punctuation">,</span>
 <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">return</span> <span class="token punctuation">{</span>
     <span class="token comment">// ...</span>
-    currentPage<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
-    totalPages<span class="token operator">:</span> <span class="token number">10</span>
+    <span class="token literal-property property">currentPage</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">totalPages</span><span class="token operator">:</span> <span class="token number">10</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">,</span>
-methods<span class="token operator">:</span> <span class="token punctuation">{</span>
+<span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token punctuation">{</span>
   <span class="token comment">// ...</span>
   <span class="token function">pageChangeHandler</span><span class="token punctuation">(</span><span class="token parameter">selectedPage</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>currentPage <span class="token operator">=</span> selectedPage
@@ -77,10 +77,10 @@ component representing page elements should look like. It's unit test can
 be used as a basis for unit testing custom page components.</p> <p>The page component receives the following props:</p> <table><thead><tr><th>name</th> <th style="text-align:center;">type</th> <th>description</th></tr></thead> <tbody><tr><td>ariaPageLabel</td> <td style="text-align:center;">String</td> <td>The computed ARIA page label</td></tr> <tr><td>isCurrent</td> <td style="text-align:center;">Boolean</td> <td>Is the page the current page</td></tr> <tr><td>page</td> <td style="text-align:center;">Number</td> <td>The page number to display</td></tr></tbody></table> <p>It is by no means required to implement all properties of the default page.
 A custom pagination component can usually just be implemented as render
 function, e.g.</p> <div class="language-js extra-class"><pre class="language-js"><code>Vue<span class="token punctuation">.</span><span class="token function">component</span><span class="token punctuation">(</span><span class="token string">'ExamplePageComponent'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-  props<span class="token operator">:</span> <span class="token punctuation">{</span>
-    page<span class="token operator">:</span> <span class="token punctuation">{</span>
-      type<span class="token operator">:</span> Number<span class="token punctuation">,</span>
-      required<span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token literal-property property">props</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">page</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">type</span><span class="token operator">:</span> Number<span class="token punctuation">,</span>
+      <span class="token literal-property property">required</span><span class="token operator">:</span> <span class="token boolean">true</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
 
@@ -124,6 +124,6 @@ used to determine any CSS class inside the component.</p> <p>Here are the defaul
       </a>
       →
     </span></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/assets/js/app.f2803bd7.js" defer></script><script src="/assets/js/2.f5287a55.js" defer></script><script src="/assets/js/12.ca28b8bc.js" defer></script>
+    <script src="/assets/js/app.a5594fff.js" defer></script><script src="/assets/js/2.f5287a55.js" defer></script><script src="/assets/js/12.81014899.js" defer></script>
   </body>
 </html>
