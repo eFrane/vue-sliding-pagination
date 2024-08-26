@@ -2,7 +2,7 @@ const { merge } = require('webpack-merge')
 const path = require('path')
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const { VueLoaderPlugin } = require('vue-loader')
 
 function resolve (dir) {
   return path.join(__dirname, dir)
@@ -12,6 +12,11 @@ let common = {
   externals: [
     'vue'
   ],
+  resolve: {
+    alias: {
+      vue: '@vue/compat'
+    }
+  },
   mode: 'development',
   module: {
     rules: [
@@ -21,6 +26,9 @@ let common = {
         options: {
           compilerOptions: {
             preserveWhitespace: false
+          },
+          compatConfig: {
+            MODE: 3
           },
           hotReload: false
         }
@@ -36,7 +44,7 @@ let common = {
       },
       {
         test: /\.s?css$/,
-        loader:
+        use:
           [
             MiniCSSExtractPlugin.loader,
             'css-loader',

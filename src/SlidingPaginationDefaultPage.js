@@ -1,3 +1,5 @@
+import { h } from 'vue'
+
 export default {
   name: 'SlidingPaginationDefaultPage',
 
@@ -41,16 +43,12 @@ export default {
     }
   },
 
-  render (h) {
+  render () {
     return h('a', {
       class: this.pageClasses,
-      attrs: {
-        href: '#',
-        'aria-label': this.ariaPageLabel
-      },
-      on: {
-        click: this.goToPage
-      }
+      href: '#',
+      'aria-label': this.ariaPageLabel,
+      onClick: this.goToPage
     },
     this.page
     )
