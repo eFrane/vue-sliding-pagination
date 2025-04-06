@@ -1,11 +1,11 @@
 import { mount } from '@vue/test-utils'
-import { h } from 'vue'
+import { h, markRaw } from 'vue'
 import SlidingPagination from '@/SlidingPagination.vue'
 
 describe('SlidingPagination.vue-custom', () => {
   // const localVue = createLocalVue()
 
-  const TestPageComponent = {
+  const TestPageComponent = markRaw({
     name: 'TestPageComponent',
 
     props: {
@@ -27,8 +27,10 @@ describe('SlidingPagination.vue-custom', () => {
         },
         'Test Page ' + this.page
       )
-    }
-  }
+    },
+
+
+  })
 
   const localVue = mount(TestPageComponent, {
     props: {

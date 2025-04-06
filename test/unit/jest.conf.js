@@ -16,7 +16,6 @@ module.exports = {
     '.*\\.(vue)$': '<rootDir>/node_modules/@vue/vue3-jest'
   },
   snapshotSerializers: ['<rootDir>/node_modules/jest-serializer-vue'],
-  setupFiles: ['<rootDir>/test/unit/setup'],
   coverageDirectory: '<rootDir>/test/unit/coverage',
   collectCoverageFrom: [
     'src/**/*.{js,vue}',
