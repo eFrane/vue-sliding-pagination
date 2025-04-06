@@ -93,5 +93,6 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "packageManager": "yarn@4.8.1"
 }
