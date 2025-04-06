@@ -31,7 +31,7 @@ it('requires a current toggle', () => {
 
 it('renders a link', () => {
   const wrapper = mount(SlidingPaginationDefaultPage, {
-    propsData: {
+    props: {
       ariaPageLabel: 'Page label',
       isCurrent: false,
       page: 1,
@@ -44,9 +44,9 @@ it('renders a link', () => {
   expect(wrapper.text()).toBe('1')
 })
 
-it('changes currentClass modifier class on change of isCurrent', () => {
+it('changes currentClass modifier class on change of isCurrent', async () => {
   const wrapper = mount(SlidingPaginationDefaultPage, {
-    propsData: {
+    props: {
       ariaPageLabel: 'Page label',
       isCurrent: false,
       page: 1,
@@ -59,6 +59,7 @@ it('changes currentClass modifier class on change of isCurrent', () => {
   expect(wrapper.element).toMatchSnapshot()
 
   wrapper.setProps({ isCurrent: true })
+  await wrapper.vm.$nextTick()
 
   expect(wrapper.vm.pageClasses).toBe('c-sliding-pagination__page c-sliding-pagination__page--current')
   expect(wrapper.element).toMatchSnapshot()
@@ -66,7 +67,7 @@ it('changes currentClass modifier class on change of isCurrent', () => {
 
 it('emits a page-click on link activation', () => {
   const wrapper = mount(SlidingPaginationDefaultPage, {
-    propsData: {
+    props: {
       ariaPageLabel: 'Page label',
       isCurrent: false,
       page: 1,

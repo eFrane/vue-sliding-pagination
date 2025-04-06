@@ -1,3 +1,10 @@
+# CHANGELOG
+
+## Next
+
+- **BREAKING** Upgrade to Vue 3
+- **BREAKING** [Dev] Upgrade to Yarn 4
+
 ## 1.3.2 / 2021-10-09
 
 **Other**
@@ -44,4 +51,3 @@
 ==================
 
   * Make pagination classes configurable
-

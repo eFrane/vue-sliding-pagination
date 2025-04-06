@@ -28,21 +28,26 @@
     "pr": "yarn && yarn prepack && echo 'Please check if the documentation still works'"
   },
   "dependencies": {
-    "vue": "^2.6"
+    "@vue/compat": "^3.4.38",
+    "vue": "^3.4.38"
   },
   "devDependencies": {
-    "@vue/test-utils": "^1.0.0-beta.26",
+    "@babel/plugin-transform-runtime": "^7.24.7",
+    "@babel/preset-env": "^7.25.3",
+    "@vue/compiler-sfc": "^3.1.0",
+    "@vue/test-utils": "^2.4.6",
+    "@vue/vue3-jest": "^29.2.6",
     "autoprefixer": "^10.4.16",
-    "babel-core": "^6.22.1",
+    "babel-core": "^7.0.0-beta.3",
     "babel-eslint": "^10.1.0",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
-    "babel-jest": "^23.6.0",
+    "babel-jest": "^27.0.6",
     "babel-loader": "^7.1.1",
     "babel-plugin-dynamic-import-node": "^2.3.0",
     "babel-plugin-syntax-jsx": "^6.18.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.22.0",
-    "babel-plugin-transform-vue-jsx": "^3.5.0",
+    "babel-plugin-transform-vue-jsx": "^3.7.0",
     "babel-preset-env": "^1.3.2",
     "babel-preset-stage-2": "^6.22.0",
     "copy-webpack-plugin": "^6.3.2",
@@ -58,9 +63,9 @@
     "eslint-plugin-vue": "^9.17.0",
     "file-loader": "^6.0.0",
     "friendly-errors-webpack-plugin": "^1.6.1",
-    "jest": "^26.1.0",
+    "jest": "^27.0.6",
     "jest-serializer-vue": "^3.1.0",
-    "mini-css-extract-plugin": "^1.3.1",
+    "mini-css-extract-plugin": "^2.9.1",
     "optimize-css-assets-webpack-plugin": "^6.0.0",
     "portfinder": "^1.0.13",
     "postcss-import": "^12.0.1",
@@ -74,21 +79,20 @@
     "style-loader": "^2.0.0",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "url-loader": "^4.0.0",
-    "vue-jest": "^3.0.1",
     "vue-loader": "^16.8.3",
     "vue-style-loader": "^4.1.2",
-    "vue-template-compiler": "^2.6.11",
-    "webpack": "^4.0.0",
-    "webpack-cli": "^4.1.0",
+    "webpack": "^5.1.3",
+    "webpack-cli": "^5.1.4",
     "webpack-merge": "^5.2.0"
   },
   "engines": {
-    "node": ">= 6.0.0",
-    "npm": ">= 3.0.0"
+    "node": ">= 18.3.0",
+    "npm": ">= 8.11.0"
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "packageManager": "yarn@4.8.1"
 }

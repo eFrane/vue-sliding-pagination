@@ -1,6 +1,7 @@
 <script>
-import SlidingPaginationDefaultPage from './SlidingPaginationDefaultPage'
 import defaultClassMap from './defaultClassMap.json'
+import { h } from 'vue'
+import SlidingPaginationDefaultPage from './SlidingPaginationDefaultPage'
 
 export function range (start, end) {
   const r = []
@@ -294,13 +295,13 @@ export default {
 
     slotOrDefault (slot, _default) {
       if (this.$slots[slot]) {
-        return this.$slots[slot]
+        return this.$slots[slot]()
       }
 
       return _default
     },
 
-    navigationElement (h, position, offset, ariaLabel, label) {
+    navigationElement (position, offset, ariaLabel, label) {
       return h(
         'li', {
           class: [
@@ -313,21 +314,17 @@ export default {
           'a',
           {
             class: this.classMap.page,
-            attrs: {
-              href: '#',
-              'aria-label': ariaLabel,
-              disabled: this.current === 1
-            },
-            on: {
-              click: (position === this.total) ? this.goToNextPage : this.goToPreviousPage
-            }
+            href: '#',
+            ariaLabel: ariaLabel,
+            disabled: this.current === 1,
+            onClick: (position === this.total) ? this.goToNextPage : this.goToPreviousPage
           },
           label
         )]
       )
     },
 
-    pageListPage (h, page) {
+    pageListPage (page) {
       return h(
         'li',
         {
@@ -339,52 +336,42 @@ export default {
           ]
         },
         [h(this.pageComponent, {
-          props: {
-            isCurrent: this.isCurrentPage(page),
-            ariaPageLabel: this.pageLabel(page),
-            page: page,
-            pageClass: this.classMap.page
-          },
-          on: {
-            'page-click': this.goToPage
-          }
+          isCurrent: this.isCurrentPage(page),
+          ariaPageLabel: this.pageLabel(page),
+          page: page,
+          pageClass: this.classMap.page,
+          onPageClick: this.goToPage
         })]
       )
     },
 
-    gap (h, label) {
+    gap (label) {
       return h('li',
         {
+          ariaHidden: true,
           class: [
             this.classMap.element,
             this.classMap.elementDisabled
-          ],
-          attrs: {
-            'aria-hidden': true
-          }
+          ]
         },
         [h('a',
           {
             class: this.classMap.page,
-            attrs: {
-              href: '#',
-              disabled: true
-            }
+            href: '#',
+            disabled: true
           },
           label
         )]
       )
     }
-
   },
 
-  render (h) {
+  render () {
     let listElements = []
 
     if (this.showPreviousPageAction) {
       listElements.push(
         this.navigationElement(
-          h,
           1,
           -1,
           this.ariaPreviousPageLabel,
@@ -393,24 +380,23 @@ export default {
       )
     }
 
-    listElements = listElements.concat(this.beginningPages.map((page) => { return this.pageListPage(h, page) }))
+    listElements = listElements.concat(this.beginningPages.map((page) => { return this.pageListPage(page) }))
 
     if (this.hasBeginningGap) {
-      listElements.push(this.gap(h, this.slotOrDefault('gapLeft', '…')))
+      listElements.push(this.gap(this.slotOrDefault('gapLeft', '…')))
     }
 
-    listElements = listElements.concat(this.slidingWindowPages.map((page) => { return this.pageListPage(h, page) }))
+    listElements = listElements.concat(this.slidingWindowPages.map((page) => { return this.pageListPage(page) }))
 
     if (this.hasEndingGap) {
-      listElements.push(this.gap(h, this.slotOrDefault('gapRight', '…')))
+      listElements.push(this.gap(this.slotOrDefault('gapRight', '…')))
     }
 
-    listElements = listElements.concat(this.endingPages.map((page) => { return this.pageListPage(h, page) }))
+    listElements = listElements.concat(this.endingPages.map((page) => { return this.pageListPage(page) }))
 
     if (this.showNextPageAction) {
       listElements.push(
         this.navigationElement(
-          h,
           this.total,
           1,
           this.ariaNextPageLabel,
@@ -421,10 +407,8 @@ export default {
 
     return h(
       'nav', {
-        class: this.classMap.component,
-        attrs: {
-          'aria-label': this.ariaPaginationLabel
-        }
+        ariaLabel: this.ariaPaginationLabel,
+        class: this.classMap.component
       },
       [h(
         'ul',

@@ -5,7 +5,7 @@ test('renders a text slot for a navigation element', () => {
   const slot = '<span class="test-slot-class">Slot Content</span>'
 
   const wrapper = mount(SlidingPagination, {
-    propsData: {
+    props: {
       total: 12,
       current: 5
     },
@@ -17,12 +17,12 @@ test('renders a text slot for a navigation element', () => {
     }
   })
 
-  expect(wrapper.findAll('.test-slot-class').length).toBe(4)
+  expect(wrapper.html().match(/test-slot-class/g).length).toBe(4)
 })
 
 test('previous page emits correct page change', () => {
   const wrapper = mount(SlidingPagination, {
-    propsData: {
+    props: {
       total: 12,
       current: 2
     }
@@ -34,7 +34,7 @@ test('previous page emits correct page change', () => {
 
 test('next page emits correct page change', () => {
   const wrapper = mount(SlidingPagination, {
-    propsData: {
+    props: {
       total: 12,
       current: 11
     }

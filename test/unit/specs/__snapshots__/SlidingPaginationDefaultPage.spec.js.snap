@@ -13,7 +13,7 @@ exports[`changes currentClass modifier class on change of isCurrent 1`] = `
 exports[`changes currentClass modifier class on change of isCurrent 2`] = `
 <a
   aria-label="Page label"
-  class="c-sliding-pagination__page"
+  class="c-sliding-pagination__page c-sliding-pagination__page--current"
   href="#"
 >
   1

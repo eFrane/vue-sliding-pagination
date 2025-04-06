@@ -1,11 +1,11 @@
-import { createLocalVue, mount } from '@vue/test-utils'
-
+import { mount } from '@vue/test-utils'
+import { h, markRaw } from 'vue'
 import SlidingPagination from '@/SlidingPagination.vue'
 
 describe('SlidingPagination.vue-custom', () => {
-  const localVue = createLocalVue()
+  // const localVue = createLocalVue()
 
-  const TestPageComponent = {
+  const TestPageComponent = markRaw({
     name: 'TestPageComponent',
 
     props: {
@@ -15,29 +15,33 @@ describe('SlidingPagination.vue-custom', () => {
       }
     },
 
-    render (h) {
+    render () {
       const self = this
       return h(
         'a',
         {
           class: `test-page-component-${this.page}`,
-          on: {
-            click: function () {
-              self.$emit('page-click', 42)
-            }
+          onClick: function () {
+            self.$emit('page-click', 42)
           }
         },
         'Test Page ' + this.page
       )
     }
-  }
 
-  localVue.component('TestPageComponent', TestPageComponent)
+  })
+
+  const localVue = mount(TestPageComponent, {
+    props: {
+      page: 1
+    }
+  })
+  // localVue.component('TestPageComponent', TestPageComponent)
 
   it('supports replacing the default page component', () => {
     const wrapper = mount(SlidingPagination, {
       localVue,
-      propsData: {
+      props: {
         current: 1,
         total: 3,
         pageComponent: TestPageComponent
@@ -50,7 +54,7 @@ describe('SlidingPagination.vue-custom', () => {
   it('relies on page component arguments for changing page', () => {
     const wrapper = mount(SlidingPagination, {
       localVue,
-      propsData: {
+      props: {
         current: 1,
         total: 44,
         pageComponent: TestPageComponent
