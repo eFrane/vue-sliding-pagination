@@ -2,6 +2,8 @@
 
 ## Next
 
+## 2.0.0-alpha-1
+
 - **BREAKING** Upgrade to Vue 3
 - **BREAKING** [Dev] Upgrade to Yarn 4
 
