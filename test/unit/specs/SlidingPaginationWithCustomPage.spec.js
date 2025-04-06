@@ -27,8 +27,7 @@ describe('SlidingPagination.vue-custom', () => {
         },
         'Test Page ' + this.page
       )
-    },
-
+    }
 
   })
 
