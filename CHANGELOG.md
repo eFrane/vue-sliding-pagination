@@ -2,6 +2,10 @@
 
 ## Next
 
+**Features**
+
+- Output both ESM and UMD modules
+
 ## 2.0.0-alpha-1
 
 - **BREAKING** Upgrade to Vue 3

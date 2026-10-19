@@ -9,9 +9,6 @@ function resolve (dir) {
 }
 
 let common = {
-  externals: [
-    'vue'
-  ],
   resolve: {
     alias: {
       vue: '@vue/compat'
@@ -68,15 +65,42 @@ module.exports = [
   // browser build
   merge(common, {
     mode: 'production',
+    externals: ['vue'],
     entry: resolve('/src/plugin.js'),
     output: {
       filename: 'browser/vue-sliding-pagination.min.js',
     },
   }),
 
+  // ESM build
+  merge(common, {
+    mode: 'production',
+    externals: [],
+    experiments: {
+      outputModule: true
+    },
+    entry: resolve('/src/SlidingPagination.vue'),
+    output: {
+      filename: 'vue-sliding-pagination.esm.js',
+      libraryTarget: 'module'
+    },
+    plugins: [
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: './src/styles/*',
+            to: 'style/[name].[ext]',
+            toType: 'template'
+          }
+        ]
+      }),
+    ]
+  }),
+
   // node module build
   merge(common, {
     mode: 'production',
+    externals: ['vue'],
     entry: resolve('/src/SlidingPagination.vue'),
     output: {
       filename: 'vue-sliding-pagination.umd.js',
