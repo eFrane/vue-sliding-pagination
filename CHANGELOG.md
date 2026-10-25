@@ -2,9 +2,15 @@
 
 ## Next
 
+## 2.0.0
+
 **Features**
 
 - Output both ESM and UMD modules
+
+**Other**
+
+- Dependency updates
 
 ## 2.0.0-alpha-1
 
