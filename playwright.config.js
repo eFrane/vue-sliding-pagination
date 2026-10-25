@@ -17,9 +17,9 @@ module.exports = defineConfig({
     },
   ],
   webServer: {
-    command: 'cd docs && yarn dev',
+    command: 'cd docs && corepack yarn dev',
     port: 5173,
     timeout: 120000,
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: true,
   },
 })

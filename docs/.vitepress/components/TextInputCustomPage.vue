@@ -23,6 +23,8 @@
   width: 20px;
   font-size: 16px;
   text-align: center;
+  background: white;
+  color: black;
 }
 </style>
 

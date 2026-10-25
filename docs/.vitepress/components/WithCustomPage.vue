@@ -1,6 +1,6 @@
 <template>
   <sliding-pagination
-    pageComponent="text-input-custom-page"
+    :pageComponent="TextInputCustomPage"
     :current="current"
     :total="total"
     @page-change="onPageChange"
