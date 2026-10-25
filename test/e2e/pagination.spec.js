@@ -23,7 +23,7 @@ test.describe('Pagination Component', () => {
 
   test('previous button should be disabled on first page', async ({ page }) => {
     // Find the previous page button (contains «)
-    const prevButton = page.locator('.c-sliding-pagination__list-element--disabled').filter({ hasText: '«' })
+    const prevButton = page.locator('li.c-sliding-pagination__list-element--disabled').filter({ hasText: '«' })
     await expect(prevButton).toBeVisible()
 
     // Try to click it (should not navigate)
@@ -34,13 +34,29 @@ test.describe('Pagination Component', () => {
     await expect(currentPage).toHaveText('1')
   })
 
+  test('previous button should navigate back', async ({ page }) => {
+    // Navigate to the last page first
+    const lastPageLink = page.locator('.c-sliding-pagination__page').filter({ hasText: '10' })
+    await lastPageLink.click()
+
+    // Find the previous page button (contains «)
+    const prevButton = page.locator('.c-sliding-pagination__list-element').filter({ hasText: '«' })
+    await expect(prevButton).toBeVisible()
+
+    await prevButton.click()
+
+    // Should be on page 9
+    const currentPage = page.locator('.c-sliding-pagination__list-element--active .c-sliding-pagination__page')
+    await expect(currentPage).toHaveText('9')
+  })
+
   test('next button should be disabled on last page', async ({ page }) => {
     // Navigate to the last page first
     const lastPageLink = page.locator('.c-sliding-pagination__page').filter({ hasText: '10' })
     await lastPageLink.click()
 
     // Find the next page button (should be disabled)
-    const nextButton = page.locator('.c-sliding-pagination__list-element--disabled').filter({ hasText: '»' })
+    const nextButton = page.locator('li.c-sliding-pagination__list-element--disabled').filter({ hasText: '»' })
     await expect(nextButton).toBeVisible()
 
     // Try to click it (should not navigate)
@@ -49,6 +65,18 @@ test.describe('Pagination Component', () => {
     // Should still be on page 10
     const currentPage = page.locator('.c-sliding-pagination__list-element--active .c-sliding-pagination__page')
     await expect(currentPage).toHaveText('10')
+  })
+
+  test('next button should navigate forwards', async ({ page }) => {
+    // Find the next page button
+    const nextButton = page.locator('.c-sliding-pagination__list-element').filter({ hasText: '»' })
+    await expect(nextButton).toBeVisible()
+
+    await nextButton.click()
+
+    // Should still be on page 10
+    const currentPage = page.locator('.c-sliding-pagination__list-element--active .c-sliding-pagination__page')
+    await expect(currentPage).toHaveText('2')
   })
 
   test('clicking page number should navigate to that page', async ({ page }) => {

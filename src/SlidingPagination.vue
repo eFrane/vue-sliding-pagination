@@ -302,22 +302,39 @@ export default {
     },
 
     navigationElement (position, offset, ariaLabel, label) {
+      const isDisabled = (offset === -1 && this.current === 1) || (offset === 1 && this.current === this.total)
+
       return h(
         'li', {
           class: [
             this.classMap.element,
-            (this.current === position) ? this.classMap.elementDisabled : ''
+            isDisabled ? this.classMap.elementDisabled : ''
           ],
           key: position
         },
         [h(
           'a',
           {
-            class: this.classMap.page,
+            class: [
+              this.classMap.page,
+              isDisabled ? this.classMap.elementDisabled : ''
+            ],
             href: '#',
             ariaLabel: ariaLabel,
-            disabled: this.current === 1,
-            onClick: (position === this.total) ? this.goToNextPage : this.goToPreviousPage
+            onClick: (e) => {
+              e.preventDefault()
+              e.stopPropagation()
+
+              if (isDisabled) {
+                return
+              }
+
+              if (offset === 1) {
+                this.goToNextPage()
+              } else {
+                this.goToPreviousPage()
+              }
+            }
           },
           label
         )]
