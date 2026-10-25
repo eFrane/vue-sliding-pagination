@@ -1,4 +1,4 @@
-@import 'variables';
+@use 'variables';
 
 .c-sliding-pagination {
   pointer-events: all;
@@ -13,8 +13,8 @@
 .c-sliding-pagination__list-element {
   display: inline-block;
 
-  background: $sliding-pagination-background-primary;
-  color: $sliding-pagination-foreground-primary;
+  background: variables.$sliding-pagination-background-primary;
+  color: variables.$sliding-pagination-foreground-primary;
 
   padding: .6em;
   border-radius: .2em;
@@ -22,15 +22,15 @@
   margin-right: .2em;
   margin-bottom: 1em;
 
-  transition-duration: $sliding-pagination-transition-duration;
+  transition-duration: variables.$sliding-pagination-transition-duration;
   transition-property: background, color;
 
   &:hover {
-    transition-duration: $sliding-pagination-transition-duration;
+    transition-duration: variables.$sliding-pagination-transition-duration;
     transition-property: background, color;
 
-    color: $sliding-pagination-foreground-secondary;
-    background: $sliding-pagination-background-secondary;
+    color: variables.$sliding-pagination-foreground-secondary;
+    background: variables.$sliding-pagination-background-secondary;
   }
 
   &:last-of-type {
@@ -38,13 +38,13 @@
   }
 
   &--active {
-    background: $sliding-pagination-background-secondary;
-    color: $sliding-pagination-foreground-secondary;
+    background: variables.$sliding-pagination-background-secondary;
+    color: variables.$sliding-pagination-foreground-secondary;
   }
 
   &--active:hover {
-    color: $sliding-pagination-foreground-primary;
-    background: $sliding-pagination-background-primary;
+    color: variables.$sliding-pagination-foreground-primary;
+    background: variables.$sliding-pagination-background-primary;
     cursor: default;
   }
 
