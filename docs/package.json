@@ -10,7 +10,6 @@
     "docs:preview": "vitepress preview"
   },
   "dependencies": {
-    "sass": "^1.77.8",
     "vue": "^3.4.38"
   },
   "devDependencies": {

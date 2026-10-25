@@ -1,7 +1,6 @@
 const { merge } = require('webpack-merge')
 const path = require('path')
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 
 function resolve (dir) {
@@ -40,12 +39,11 @@ let common = {
         )
       },
       {
-        test: /\.s?css$/,
+        test: /\.css$/,
         use:
           [
             MiniCSSExtractPlugin.loader,
-            'css-loader',
-            'sass-loader'
+            'css-loader'
           ]
       },
     ]
@@ -83,18 +81,7 @@ module.exports = [
     output: {
       filename: 'vue-sliding-pagination.esm.js',
       libraryTarget: 'module'
-    },
-    plugins: [
-      new CopyWebpackPlugin({
-        patterns: [
-          {
-            from: './src/styles/*',
-            to: 'style/[name].[ext]',
-            toType: 'template'
-          }
-        ]
-      }),
-    ]
+    }
   }),
 
   // node module build
@@ -108,17 +95,6 @@ module.exports = [
 
       library: 'vue-sliding-pagination',
       umdNamedDefine: true
-    },
-    plugins: [
-      new CopyWebpackPlugin({
-        patterns: [
-          {
-            from: './src/styles/*',
-            to: 'style/[name].[ext]',
-            toType: 'template'
-          }
-        ]
-      }),
-    ]
+    }
   })
 ];

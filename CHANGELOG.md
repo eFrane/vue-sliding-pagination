@@ -2,11 +2,10 @@
 
 ## Next
 
-## 2.0.0
-
 **Features**
 
 - Output both ESM and UMD modules
+- **BREAKING** Drop SCSS styling, overrides now need to be done using CSS vars
 
 **Other**
 

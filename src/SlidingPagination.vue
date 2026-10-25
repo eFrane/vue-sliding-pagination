@@ -422,7 +422,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style>
 /* CSS Custom Properties for theme-aware styling */
 :root {
   --sliding-pagination-bg-primary: #246068;
@@ -443,60 +443,54 @@ export default {
 
 .c-sliding-pagination__list-element {
   display: inline-block;
-
   background: var(--sliding-pagination-bg-primary, #246068);
   color: var(--sliding-pagination-fg-primary, #fff);
-
   padding: .6em;
   border-radius: .2em;
   margin: 0;
   margin-right: .2em;
   margin-bottom: 1em;
-
   transition-duration: 300ms;
   transition-property: background, color;
+}
 
-  &:hover {
-    transition-duration: 300ms;
-    transition-property: background, color;
+.c-sliding-pagination__list-element:hover {
+  transition-duration: 300ms;
+  transition-property: background, color;
+  color: var(--sliding-pagination-fg-secondary, #e9e9e9);
+  background: var(--sliding-pagination-bg-secondary, #69969c);
+}
 
-    color: var(--sliding-pagination-fg-secondary, #e9e9e9);
-    background: var(--sliding-pagination-bg-secondary, #69969c);
-  }
+.c-sliding-pagination__list-element:last-of-type {
+  margin-right: 0;
+}
 
-  &:last-of-type {
-    margin-right: 0;
-  }
+.c-sliding-pagination__list-element--active {
+  background: var(--sliding-pagination-bg-secondary, #69969c);
+  color: var(--sliding-pagination-fg-secondary, #e9e9e9);
+}
 
-  &--active {
-    background: var(--sliding-pagination-bg-secondary, #69969c);
-    color: var(--sliding-pagination-fg-secondary, #e9e9e9);
-  }
+.c-sliding-pagination__list-element--active:hover {
+  color: var(--sliding-pagination-fg-primary, #fff);
+  background: var(--sliding-pagination-bg-primary, #246068);
+  cursor: default;
+}
 
-  &--active:hover {
-    color: var(--sliding-pagination-fg-primary, #fff);
-    background: var(--sliding-pagination-bg-primary, #246068);
-    cursor: default;
-  }
-
-  &--disabled {
-    background: none;
-    color: inherit;
-    cursor: not-allowed;
-  }
+.c-sliding-pagination__list-element--disabled {
+  background: none;
+  color: inherit;
+  cursor: not-allowed;
 }
 
 .c-sliding-pagination__page {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
+  text-decoration: none !important;
+  color: var(--sliding-pagination-fg-primary, inherit) !important;
+}
 
-    /* Prevent browser/VitePress link styling from overriding pagination colors */
-    text-decoration: none !important;
-    color: var(--sliding-pagination-fg-primary, inherit) !important;
-
-  &[disabled] {
-    pointer-events: none !important;
-    cursor: not-allowed !important;
-  }
+.c-sliding-pagination__page[disabled] {
+  pointer-events: none !important;
+  cursor: not-allowed !important;
 }
 </style>
