@@ -11,7 +11,4 @@ hero:
     - theme: brand
       text: Get Started
       link: /guide
-    - theme: alt
-      text: View Examples
-      link: /examples
 ---

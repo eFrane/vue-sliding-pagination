@@ -26,7 +26,14 @@
     "prepack": "yarn run test && yarn run build",
     "tdd": "yarn run unit --watch",
     "test": "yarn run unit --coverage",
-    "lint": "eslint --ext .js,.vue src test/unit",
+    "docs:dev": "cd docs && yarn dev",
+    "docs:build": "cd docs && yarn build",
+    "docs:preview": "cd docs && yarn preview",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
+    "test:all": "yarn test && yarn test:e2e",
+    "lint": "eslint --ext .js,.vue src tests/unit",
     "pr": "yarn && yarn prepack && echo 'Please check if the documentation still works'"
   },
   "dependencies": {
@@ -36,6 +43,7 @@
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.24.7",
     "@babel/preset-env": "^7.25.3",
+    "@playwright/test": "^1.64.1",
     "@vue/compiler-sfc": "^3.1.0",
     "@vue/test-utils": "^2.4.6",
     "@vue/vue3-jest": "^29.2.6",

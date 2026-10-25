@@ -11,6 +11,7 @@
 <script setup>
 import { ref } from 'vue'
 import SlidingPagination from '../../../src/SlidingPagination.vue'
+import TextInputCustomPage from './TextInputCustomPage.vue'
 
 const current = ref(1)
 const total = ref(20)
