@@ -1,18 +1,23 @@
 # Examples
 
+<script setup>
+import SimpleExample from './.vitepress/components/SimpleExample.vue'
+import WithCustomPage from './.vitepress/components/WithCustomPage.vue'
+</script>
+
 ## Very Basic Example
 
 Easy as 1-2-3. :tada:
 
-<simple-example></simple-example>
+<SimpleExample />
 
-<<< @/.vuepress/components/SimpleExample.vue
+<<< @/.vitepress/components/SimpleExample.vue
 
 ## With Custom Page
 
 A custom page component that allows jumping to another page using a text input.
 
-<with-custom-page></with-custom-page>
+<WithCustomPage />
 
-<<< @/.vuepress/components/TextInputCustomPage.vue
-<<< @/.vuepress/components/WithCustomPage.vue
+<<< @/.vitepress/components/TextInputCustomPage.vue
+<<< @/.vitepress/components/WithCustomPage.vue

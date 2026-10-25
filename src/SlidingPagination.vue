@@ -423,5 +423,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "styles/sliding-pagination";
+@use "styles/sliding-pagination";
 </style>
