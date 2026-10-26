@@ -3,7 +3,7 @@ const path = require('path')
 module.exports = {
   rootDir: path.resolve(__dirname, '../../'),
   testURL: 'http://localhost:8080/',
-  testPathIgnorePatterns: ['<rootDir>/tests/e2e/*'],
+  testPathIgnorePatterns: ['<rootDir>/test/e2e/*'],
   moduleFileExtensions: [
     'js',
     'json',
@@ -17,7 +17,7 @@ module.exports = {
     '.*\\.(vue)$': '<rootDir>/node_modules/@vue/vue3-jest'
   },
   snapshotSerializers: ['<rootDir>/node_modules/jest-serializer-vue'],
-  coverageDirectory: '<rootDir>/tests/unit/coverage',
+  coverageDirectory: '<rootDir>/test/unit/coverage',
   collectCoverageFrom: [
     'src/**/*.{js,vue}',
     '!src/main.js',
