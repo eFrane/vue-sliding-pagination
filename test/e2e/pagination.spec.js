@@ -36,7 +36,7 @@ test.describe('Pagination Component', () => {
 
   test('previous button should navigate back', async ({ page }) => {
     // Navigate to the last page first
-    const lastPageLink = page.locator('.c-sliding-pagination__page').filter({ hasText: '10' })
+    const lastPageLink = page.locator('.c-sliding-pagination__page').filter({ hasText: /^10$/ })
     await lastPageLink.click()
 
     // Find the previous page button (contains «)
@@ -52,7 +52,7 @@ test.describe('Pagination Component', () => {
 
   test('next button should be disabled on last page', async ({ page }) => {
     // Navigate to the last page first
-    const lastPageLink = page.locator('.c-sliding-pagination__page').filter({ hasText: '10' })
+    const lastPageLink = page.locator('.c-sliding-pagination__page').filter({ hasText: /^10$/ })
     await lastPageLink.click()
 
     // Find the next page button (should be disabled)
@@ -81,7 +81,7 @@ test.describe('Pagination Component', () => {
 
   test('clicking page number should navigate to that page', async ({ page }) => {
     // Click page 5
-    const page5 = page.locator('.c-sliding-pagination__page').filter({ hasText: '5' })
+    const page5 = page.locator('.c-sliding-pagination__page').filter({ hasText: /^5$/ })
     await page5.click()
 
     // Should be on page 5

@@ -1,5 +1,5 @@
 {
-  "componentClass": "c-sliding-pagination",
+  "component": "c-sliding-pagination",
   "list": "c-sliding-pagination__list",
   "element": "c-sliding-pagination__list-element",
   "elementDisabled": "c-sliding-pagination__list-element--disabled",

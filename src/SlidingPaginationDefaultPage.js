@@ -40,6 +40,14 @@ export default {
       e.stopPropagation()
 
       this.$emit('page-click', this.page)
+    },
+
+    handleKeyDown (e) {
+      // Handle Enter and Space for keyboard accessibility
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault()
+        this.goToPage(e)
+      }
     }
   },
 
@@ -48,7 +56,8 @@ export default {
       class: this.pageClasses,
       href: '#',
       'aria-label': this.ariaPageLabel,
-      onClick: this.goToPage
+      onClick: this.goToPage,
+      onKeydown: this.handleKeyDown
     },
     this.page
     )

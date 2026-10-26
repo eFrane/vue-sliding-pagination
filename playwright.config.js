@@ -2,10 +2,10 @@ const { defineConfig, devices } = require('@playwright/test')
 
 module.exports = defineConfig({
   testDir: './test/e2e',
-  fullyParallel: true,
+  fullyParallel: false,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  workers: 1,
   use: {
     trace: 'on-first-retry',
     baseURL: 'http://localhost:5173',
@@ -14,6 +14,10 @@ module.exports = defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
+    },
+    {
+      name: 'Mobile Chrome',
+      use: { ...devices['iPhone 12'] },
     },
   ],
   webServer: {
