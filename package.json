@@ -33,7 +33,7 @@
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:headed": "playwright test --headed",
     "test:all": "yarn test && yarn test:e2e",
-    "lint": "eslint --ext .js,.vue src tests/unit",
+    "lint": "eslint --ext .js,.vue src test",
     "pr": "yarn && yarn prepack && echo 'Please check if the documentation still works'"
   },
   "dependencies": {
