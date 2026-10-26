@@ -2,7 +2,6 @@ const path = require('path')
 
 module.exports = {
   rootDir: path.resolve(__dirname, '../../'),
-  testURL: 'http://localhost:8080/',
   testPathIgnorePatterns: ['<rootDir>/test/e2e/*'],
   moduleFileExtensions: [
     'js',
