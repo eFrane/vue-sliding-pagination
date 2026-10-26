@@ -8,11 +8,6 @@ function resolve (dir) {
 }
 
 let common = {
-  resolve: {
-    alias: {
-      vue: '@vue/compat'
-    }
-  },
   mode: 'development',
   module: {
     rules: [
@@ -22,9 +17,6 @@ let common = {
         options: {
           compilerOptions: {
             preserveWhitespace: false
-          },
-          compatConfig: {
-            MODE: 3
           },
           hotReload: false
         }

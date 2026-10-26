@@ -4,12 +4,14 @@
 
 **Features**
 
+- Dropped vue-compat since the Vue 3 migration is completed
 - Output both ESM and UMD modules
+- Improve keyboard navigation
 - **BREAKING** Drop SCSS styling, overrides now need to be done using CSS vars
 
 **Other**
 
-- Dependency updates
+- **BREAKING** Bump minimum Vue version to 3.5.x
 
 ## 2.0.0-alpha-1
 

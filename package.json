@@ -37,8 +37,7 @@
     "pr": "yarn && yarn prepack && echo 'Please check if the documentation still works'"
   },
   "dependencies": {
-    "@vue/compat": "^3.4.38",
-    "vue": "^3.4.38"
+    "vue": "^3.5.44"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.24.7",
