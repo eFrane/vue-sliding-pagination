@@ -4,7 +4,7 @@
 
 **Features**
 
-- Dropped vue-compat since the Vue 3 migration is completed
+- Drop vue-compat and many other unused dependencies
 - Output both ESM and UMD modules
 - Improve keyboard navigation
 - **BREAKING** Drop SCSS styling, overrides now need to be done using CSS vars
