@@ -97,7 +97,7 @@ test.describe('Edge Cases', () => {
     test('should activate sliding window', async ({ page }) => {
       if (test.info().project.name === 'Mobile Chrome') {
         // This test is currently expected to fail on Mobile Chrome
-        test.skip();
+        test.skip()
       }
 
       const fourthPagination = page.locator('.edge-cases-container > div').nth(3)

@@ -116,7 +116,7 @@ test.describe('Class Map Customization', () => {
     test('page links use custom class', async ({ page }) => {
       if (test.info().project.name === 'Mobile Chrome') {
         // This test is currently expected to fail on Mobile Chrome
-        test.skip();
+        test.skip()
       }
 
       const thirdPagination = page.locator('.class-map-container > div').nth(2)
@@ -162,7 +162,7 @@ test.describe('Class Map Customization', () => {
     test('elements use Tailwind classes', async ({ page }) => {
       if (test.info().project.name === 'Mobile Chrome') {
         // This test is currently expected to fail on Mobile Chrome
-        test.skip();
+        test.skip()
       }
 
       const fourthPagination = page.locator('.class-map-container > div').nth(3)
@@ -194,7 +194,7 @@ test.describe('Class Map Customization', () => {
     test('disabled state uses Tailwind classes', async ({ page }) => {
       if (test.info().project.name === 'Mobile Chrome') {
         // This test is currently expected to fail on Mobile Chrome
-        test.skip();
+        test.skip()
       }
 
       const fourthPagination = page.locator('.class-map-container > div').nth(3)

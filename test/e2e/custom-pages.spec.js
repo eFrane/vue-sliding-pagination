@@ -20,7 +20,7 @@ test.describe('Custom Page Component', () => {
   test('should display page numbers for non-current pages', async ({ page }) => {
     if (test.info().project.name === 'Mobile Chrome') {
       // This test is currently expected to fail on Mobile Chrome
-      test.skip();
+      test.skip()
     }
 
     // Non-current pages should still be displayed as links
