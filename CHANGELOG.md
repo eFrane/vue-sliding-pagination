@@ -2,6 +2,10 @@
 
 ## Next
 
+## 3.0.1
+
+- Fixed build process
+
 ## 3.0
 
 **Features**
