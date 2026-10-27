@@ -2,6 +2,8 @@
 
 ## Next
 
+## 3.0
+
 **Features**
 
 - Drop vue-compat and many other unused dependencies
