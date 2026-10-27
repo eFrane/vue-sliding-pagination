@@ -4,7 +4,7 @@
 
 > ARIA-friendly pagination component with a sliding window.
 
-![Example pagination](https://github.com/eFrane/vue-sliding-pagination/raw/main/docs/.vitepress/pagination-example.png)
+![Example pagination](https://github.com/eFrane/vue-sliding-pagination/raw/main/docs/pagination-example.png)
 
 ## Installation
 
