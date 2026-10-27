@@ -1,0 +1,1 @@
+import{_ as a,o as i,c as t,a0 as e}from"./chunks/framework.CteHI--S.js";const k=JSON.parse('{"title":"Guide","description":"","frontmatter":{},"headers":[],"relativePath":"guide.md","filePath":"guide.md"}'),n={name:"guide.md"};function l(p,s,h,d,o,r){return i(),t("div",null,[...s[0]||(s[0]=[e("",44)])])}const c=a(n,[["render",l]]);export{k as __pageData,c as default};
