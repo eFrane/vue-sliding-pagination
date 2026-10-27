@@ -5,3 +5,4 @@ yarn.lock
 webpack.config.js
 *.tgz
 yarn-error.log
+docs/node_modules
