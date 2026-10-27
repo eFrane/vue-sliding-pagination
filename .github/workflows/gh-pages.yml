@@ -14,6 +14,9 @@ jobs:
     - name: Enable corepack
       run: corepack enable
 
+    - name: "Install package dependencies"
+      run: yarn install --frozen-lockfile
+
     - name: "Install documentation dependencies"
       run: yarn --cwd docs install --frozen-lockfile
 
