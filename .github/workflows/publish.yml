@@ -1,0 +1,29 @@
+name: Publish to npm
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Install modules
+        run: yarn install --frozen-lockfile
+
+      - name: Run tests
+        run: yarn test:unit
+
+      - name: Build
+        run: yarn build
+
+      - name: Stage package version
+        run: npm stage publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
